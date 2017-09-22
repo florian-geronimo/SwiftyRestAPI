@@ -1,9 +1,10 @@
 import SwiftyRestAPICore
+import Swiftline
 
 let swifty = SwiftyRestAPI()
 
 do {
     try swifty.run()
 } catch {
-    print("Whoops! An error occurred: \(error)")
+    print("Whoops! An error occurred: \(error)".f.Red)
 }

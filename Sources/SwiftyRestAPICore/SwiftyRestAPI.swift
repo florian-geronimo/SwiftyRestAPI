@@ -1,5 +1,6 @@
 import Foundation
 import Files
+import Swiftline
 
 public final class SwiftyRestAPI {
     private let arguments: [String]
@@ -22,12 +23,12 @@ public final class SwiftyRestAPI {
           throw Error.missingFileName
       }
 
-
-        // The first argument is the execution path
         let fileName = arguments[2]
+        //let feature = arguments[1]
 
         do {
             try FileSystem().createFile(at: fileName)
+            print("\(fileName) created at \(Folder.current)".f.Green )
         } catch {
             throw Error.failedToCreateFile
         }

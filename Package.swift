@@ -22,7 +22,7 @@ let package = Package(
         ),
         .target(
             name: "SwiftyRestAPICore",
-            dependencies: ["Files"]
+            dependencies: ["Files","Swiftline"]
         ),
         .testTarget(
           name: "SwiftyRestAPITests",
