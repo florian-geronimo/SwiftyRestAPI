@@ -9,11 +9,22 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        guard arguments.count > 1 else {
-            throw Error.missingFileName
-        }
+
+      guard arguments.count > 1 else {
+          throw Error.missingFeatureConvert
+      }
+
+      guard arguments[1] == "convert" else {
+          throw Error.missingFeatureConvert
+      }
+
+      guard arguments.count > 2 else {
+          throw Error.missingFileName
+      }
+
+
         // The first argument is the execution path
-        let fileName = arguments[1]
+        let fileName = arguments[2]
 
         do {
             try FileSystem().createFile(at: fileName)
@@ -27,5 +38,6 @@ public extension SwiftyRestAPI {
     enum Error: Swift.Error {
         case missingFileName
         case failedToCreateFile
+        case missingFeatureConvert
     }
 }
