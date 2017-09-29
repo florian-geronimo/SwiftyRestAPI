@@ -20,6 +20,8 @@ struct API: Codable {
 
     struct Endpoint: Codable {
         let name: String
+        let resourceName: String
+        let isResourceArray: Bool
         let method: HTTPMethod
         let relativePath: String
         let urlParameters: [URLParameter]
