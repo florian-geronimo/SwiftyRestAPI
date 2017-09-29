@@ -1,5 +1,4 @@
 import SwiftyRestAPICore
-import Swiftline
 
 let swifty = SwiftyRestAPI()
 

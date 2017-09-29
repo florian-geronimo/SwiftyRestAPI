@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JSONType {
+enum JSONType: String, Codable {
 
     case string
     case int

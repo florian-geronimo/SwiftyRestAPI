@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct URLParameter {
+struct URLParameter: Codable {
 
     let name: String
     let type: JSONType

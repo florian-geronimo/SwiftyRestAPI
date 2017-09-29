@@ -30,3 +30,27 @@ final class RequestrAPIGenerator: APIGenerator {
     }
 
 }
+
+// Output should look like this:
+//enum Endpoint {
+//
+//    static let baseURL = ""
+//
+//    case places
+//    case search
+//    case quotes
+//
+//    var fullPath: String {
+//        let path: String
+//        switch self {
+//        case .places:
+//            path = "/v2/places"
+//        case .search:
+//            path = "/v2/search"
+//        case .quotes:
+//            path = "/v2/quotes"
+//        }
+//        return Endpoint.baseURL + path
+//    }
+//
+//}
