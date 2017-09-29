@@ -3,6 +3,7 @@ import Files
 import Swiftline
 
 public final class SwiftyRestAPI {
+
     private let arguments: [String]
 
     public init(arguments: [String] = CommandLine.arguments) {
@@ -36,9 +37,11 @@ public final class SwiftyRestAPI {
 }
 
 public extension SwiftyRestAPI {
+
     enum Error: Swift.Error {
         case missingFileName
         case failedToCreateFile
         case missingFeatureConvert
     }
+
 }
