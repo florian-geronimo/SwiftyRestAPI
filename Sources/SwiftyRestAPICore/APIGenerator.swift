@@ -10,7 +10,6 @@ import Foundation
 /// Multiline string representing the text data for an output file
 typealias FileText = String
 
-/// Implement this protocol to create a custom APIGenerator
 protocol APIGenerator {
 
     init(api: API)
