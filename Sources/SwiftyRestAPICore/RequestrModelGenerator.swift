@@ -40,9 +40,11 @@ final class RequestrModelGenerator: ModelGenerator {
 
         let text = """
         import Requestr
+
         struct \(modelName) : JSONDeserializable {
-            \(makeVariables(parameters: parameters))
-            \(makeInit(parameters: parameters))
+
+        \(makeVariables(parameters: parameters))
+        \(makeInit(parameters: parameters))
         }
         """
 
@@ -54,17 +56,17 @@ final class RequestrModelGenerator: ModelGenerator {
     private func makeVariables(parameters: [Parameter]) -> String {
         var string = ""
         for parameter in parameters {
-            string += "let \(parameter.name): \(parameter.type)\n"
+            string += "  let \(parameter.name): \(parameter.type)\n"
         }
         return string
     }
 
     private func makeInit(parameters: [Parameter]) -> String {
-        var string = "init(json: JSONDictionary) throws {\n"
+        var string = "   init(json: JSONDictionary) throws {"
         for parameter in parameters {
-            string += "\(parameter.name) = try json.decode(\"\(parameter.name)\")\n"
+            string += "\n      \(parameter.name) = try json.decode(\"\(parameter.name)\")"
         }
-        string += "\n}"
+        string += "\n   }"
         return string
     }
 
