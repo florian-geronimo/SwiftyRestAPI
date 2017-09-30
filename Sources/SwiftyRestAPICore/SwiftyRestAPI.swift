@@ -11,7 +11,7 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        
+
     }
 
     public func run_CREATE_EXAMPLE_API_INPUT() throws {
@@ -80,7 +80,7 @@ public final class SwiftyRestAPI {
         let fileName = arguments[2]
         //let feature = arguments[1]
 
-        do {
+        do {          
             try FileSystem().createFile(at: fileName)
             print("\(fileName) created at \(Folder.current)".f.Green )
         } catch {
