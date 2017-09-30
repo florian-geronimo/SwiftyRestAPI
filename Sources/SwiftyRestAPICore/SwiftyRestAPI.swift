@@ -11,17 +11,7 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        let data = try File(path: "ApiInputExample.json").read()
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-
-        let apiGenerator = RequestrAPIGenerator(api: api)
-        let serviceTexts = apiGenerator.makeServiceFiles()
-
-        for (idx, serviceText) in serviceTexts.enumerated() {
-            let serviceFile = try FileSystem().createFile(at: "Service\(idx).swift")
-            try serviceFile.write(string: serviceText)
-        }
+        
     }
 
     public func run_CREATE_EXAMPLE_API_INPUT() throws {
