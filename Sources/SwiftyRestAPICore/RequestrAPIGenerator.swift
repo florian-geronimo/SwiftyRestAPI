@@ -66,7 +66,7 @@ extension RequestrAPIGenerator {
 
     private func makeBaseURL(with baseURL: String) -> String {
         return """
-        static let baseURL = "\(baseURL)"
+            static let baseURL = "\(baseURL)"
         """
     }
 
@@ -74,7 +74,7 @@ extension RequestrAPIGenerator {
         var string = ""
         for endpoint in endpoints {
             string += """
-            case \(endpoint.name)
+                case \(endpoint.name)
 
             """
         }
@@ -84,22 +84,22 @@ extension RequestrAPIGenerator {
     private func makeFullPathComputedProperty(for endpoints: [API.Endpoint]) -> String {
         var string = ""
         string += """
-        var fullPath: String {
-        let path: String
-        switch self {
+            var fullPath: String {
+                let path: String
+                switch self {
 
         """
         for endpoint in endpoints {
             string += """
-            case .\(endpoint.name):
-            path = "\(endpoint.relativePath)"
+                        case .\(endpoint.name):
+                            path = "\(endpoint.relativePath)"
 
             """
         }
         string += """
-        }
-        return Endpoint.baseURL + path
-        }
+                }
+                return Endpoint.baseURL + path
+            }
         """
         return string
     }
