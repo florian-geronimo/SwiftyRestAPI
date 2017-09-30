@@ -16,7 +16,6 @@ final class RequestrModelGenerator: ModelGenerator {
     }
 
     let modelName: String
-
     let json: JSONDictionary
 
     init(modelName: String, json: JSONDictionary) {
@@ -56,6 +55,44 @@ final class RequestrModelGenerator: ModelGenerator {
         return string
     }
 
+    private func makeParameters(json: JSONDictionary) -> [Parameter] {
+      var parameters = [Parameter]()
+
+       for key in json {
+         var jsonType: JSONType!
+
+         switch key["JSONType"] {
+         case let someInt as Int:
+           jsonType = .int
+         case let someDouble as Double:
+           jsonType = .double
+         case let someString as String:
+           jsonType = .string
+         case let someArray as Array:
+           jsonType = .array
+         case let someDictionary as Dictionary:
+           jsonType = .dictionary
+         default:
+           jsonType = .null
+         }
+
+         guard let name = key["name"] as! String else {
+             return Error.castError
+         }
+
+         guard let value = key["value"] as! Any else {
+             return Error.castError
+         }
+
+         let parameter = Parameter(name: name,
+                                   JSONType: jsonType,
+                                   value: value)
+
+         parameters.append( parameter )
+       }
+       return parameters
+    }
+
     // El output de aqui sera un String largo, con muchos \n que representara el archivo swift.
     // Esta clase no se preocupa por convertir ese string en un archivo y guardarlo, eso se hara en otro lado.
     // Este modulo solo toma un JSON y lo convierte en un ARCHIVO/STRING .swift (Checa Place.swift en dropbox para que veas un ejemplo de un modelo con Requestr)
@@ -75,12 +112,7 @@ final class RequestrModelGenerator: ModelGenerator {
     // No te preocupes por crear el archivo, ese se crea en otro lado.
     func makeModelFile() -> FileText {
 
-       var parameters = [Parameter]()
-
-        for key in keys {
-          let parameter = Parameter(name:, JSONType: value:)
-          parameters.append( parameter )
-        }
+       var parameters = makeParameters(json: json)
 
         var text = """
         import Requestr
@@ -91,9 +123,6 @@ final class RequestrModelGenerator: ModelGenerator {
         """
         return text
     }
-
-
-
 }
 
 extension RequestrModelGenerator {
