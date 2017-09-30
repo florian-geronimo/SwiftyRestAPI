@@ -36,16 +36,16 @@ final class RequestrModelGenerator: ModelGenerator {
 
     func makeModelFile() -> FileText {
 
-        var parameters = makeParameters(json: json)
+        let parameters = makeParameters(json: json)
 
-        var text = """
+        let text = """
         import Requestr
         struct \(modelName) : JSONDeserializable {
             \(makeVariables(parameters: parameters))
             \(makeInit(parameters: parameters))
         }
         """
-        
+
         return text
     }
 
@@ -54,9 +54,7 @@ final class RequestrModelGenerator: ModelGenerator {
     private func makeVariables(parameters: [Parameter]) -> String {
         var string = ""
         for parameter in parameters {
-            string += """
-            let \(parameter.name): \(parameter.type)
-            """
+            string += "let \(parameter.name): \(parameter.type)\n"
         }
         return string
     }
@@ -64,9 +62,7 @@ final class RequestrModelGenerator: ModelGenerator {
     private func makeInit(parameters: [Parameter]) -> String {
         var string = "init(json: JSONDictionary) throws {\n"
         for parameter in parameters {
-            string += """
-              \(parameter.name) = try json.decode(\"\(parameter.name)\")
-            """
+            string += "\(parameter.name) = try json.decode(\"\(parameter.name)\")\n"
         }
         string += "\n}"
         return string
@@ -75,34 +71,26 @@ final class RequestrModelGenerator: ModelGenerator {
     private func makeParameters(json: JSONDictionary) -> [Parameter] {
       var parameters = [Parameter]()
 
-       for key in json {
+       for (key,value) in json {
          var jsonType: JSONType!
 
-         switch key["JSONType"] {
-         case let someInt as Int:
+         switch value {
+         case is Int:
            jsonType = .int
-         case let someDouble as Double:
+         case is Double:
            jsonType = .double
-         case let someString as String:
+         case is String:
            jsonType = .string
-         case let someArray as Array:
+         case is [Any]:
            jsonType = .array
-         case let someDictionary as Dictionary:
+         case is [String:Any]:
            jsonType = .dictionary
          default:
            jsonType = .null
          }
 
-         guard let name = key["name"] as! String else {
-             return Error.castError
-         }
-
-         guard let value = key["value"] as! Any else {
-             return Error.castError
-         }
-
-         let parameter = Parameter(name: name,
-                                   JSONType: jsonType,
+         let parameter = Parameter(name: key,
+                                   type: jsonType,
                                    value: value)
 
          parameters.append( parameter )
