@@ -32,6 +32,23 @@ final class RequestrModelGenerator: ModelGenerator {
         self.json = json
     }
 
+    // MARK: - File text generation
+
+    func makeModelFile() -> FileText {
+
+        var parameters = makeParameters(json: json)
+
+        var text = """
+        import Requestr
+        struct \(modelName) : JSONDeserializable {
+            \(makeVariables(parameters: parameters))
+            \(makeInit(parameters: parameters))
+        }
+        """
+        
+        return text
+    }
+
     // MARK: Helper's
 
     private func makeVariables(parameters: [Parameter]) -> String {
@@ -92,37 +109,6 @@ final class RequestrModelGenerator: ModelGenerator {
        }
        return parameters
     }
-
-    // El output de aqui sera un String largo, con muchos \n que representara el archivo swift.
-    // Esta clase no se preocupa por convertir ese string en un archivo y guardarlo, eso se hara en otro lado.
-    // Este modulo solo toma un JSON y lo convierte en un ARCHIVO/STRING .swift (Checa Place.swift en dropbox para que veas un ejemplo de un modelo con Requestr)
-
-    // Tendras que loopear sobre todos los key, values en el JSON dict
-    // Crear un Parameter (el struct que tengo aqui arriba) para cada key, value. Que tendra:
-    // El nombre del parametro (el key del dict)
-    // El tipo, aqui puedes usar un SWITCH, ya que el value es un Any, y tratar de castear con todos los tipos validos en JSON (ve el JSONType) para averiguar que tipo es.
-    // Y guarda el valor como un Any tambien por si se necesita despues.
-
-    // Despues tendras un arreglo de Parameter's (El struct que hice arriba)
-    // Con ese arreglo de parameteros deberias de poder crear un archivo que se parezca al que puse en dropbox, Place.swift
-    // Checa tambien el link a natalie.swift que te mande para idea de como generar un string bien largo como un archivo.
-    // Aunque como estamos usando Swift4 esta mas facil hacer un multiline string
-
-    // Todo este proceso lo puedes separar en 2-3 pasos/metodos ... y ya en este metodo, que tienes que implementar, segun el protocolo, ya regresar el STRING final ...
-    // No te preocupes por crear el archivo, ese se crea en otro lado.
-    func makeModelFile() -> FileText {
-
-       var parameters = makeParameters(json: json)
-
-        var text = """
-        import Requestr
-        struct \(modelName) : JSONDeserializable {
-            \(makeVariables(parameters: parameters))
-            \(makeInit(parameters: parameters))
-        }
-        """
-        return text
-    }
 }
 
 extension RequestrModelGenerator {
@@ -130,5 +116,4 @@ extension RequestrModelGenerator {
     enum Error: Swift.Error {
         case castError
     }
-
 }
