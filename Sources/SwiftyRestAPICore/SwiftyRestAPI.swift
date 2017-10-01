@@ -11,11 +11,17 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        print("Welcome to SwiftyRestAPI generator!".foreground.Cyan)
+        try runCLIApp()
+    }
 
-        let modelGenerator = "Model Generator".foreground.Blue
-        let apiGenerator = "API Generator".foreground.Blue
-        let featureChoice = choose("What feature do you want to use?\n", choices: modelGenerator, apiGenerator)
+    // MARK: - CLI App
+
+    private func runCLIApp() throws {
+        print("Welcome to SwiftyRestAPI generator!".foreground.Red.background.Yellow.style.Bold)
+
+        let modelGenerator = "Model Generator".foreground.Blue.style.Underline
+        let apiGenerator = "API Generator".foreground.Blue.style.Underline
+        let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow, choices: modelGenerator, apiGenerator)
 
         if featureChoice == modelGenerator {
             try choseModelGenerator()
@@ -25,51 +31,55 @@ public final class SwiftyRestAPI {
     }
 
     private func choseModelGenerator() throws {
-        print("Model Generator".foreground.Red)
+        print("Model Generator".foreground.Red.background.Yellow.style.Bold)
 
-        let requestrModelGenerator = "Requestr Model Generator".foreground.Blue
-        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Cyan, choices: requestrModelGenerator)
+        let requestrModelGenerator = "Requestr Model Generator".foreground.Blue.style.Underline
+        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator)
 
         guard generatorChoice == requestrModelGenerator else {
             return
         }
 
-        let inputFileName = ask("What is the input JSON file name?".foreground.Cyan)
-        let modelName = ask("What is this model's name?".foreground.Cyan)
+        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow)
+        let modelName = ask("What is this model's name?".foreground.Yellow)
         try createModelFile(inputFileName: inputFileName, modelName: modelName)
 
         print("Done!".foreground.Red)
     }
 
     private func choseApiGenerator() throws {
-        print("API Generator".foreground.Red)
+        print("API Generator".foreground.Red.background.Yellow.style.Bold)
 
-        let requestrApiGenerator = "Requestr API Generator".foreground.Blue
-        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Cyan, choices: requestrApiGenerator)
+        let requestrApiGenerator = "Requestr API Generator".foreground.Blue.style.Underline
+        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator)
 
         guard generatorChoice == requestrApiGenerator else {
             return
         }
 
-        let inputFileName = ask("What is the input API doc file name?".foreground.Cyan)
+        let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
         try createEndpointsFile(inputFileName: inputFileName)
         try createServiceFiles(inputFileName: inputFileName)
 
-        print("Done!".foreground.Red)
+        print("Finished!".foreground.Red)
     }
 
     // MARK: - Helper's
 
     private func createModelFile(inputFileName: String, modelName: String) throws {
+        let outputFileName = "\(modelName).swift"
         let inputData = try File(path: inputFileName).read()
 
         let modelGenerator = try RequestrModelGenerator(modelName: modelName, jsonData: inputData)
         let modelText = modelGenerator.makeModelFile()
-        let modelFile = try FileSystem().createFile(at: "\(modelName).swift")
+        let modelFile = try FileSystem().createFile(at: outputFileName)
         try modelFile.write(string: modelText)
+
+        print("Created file \(outputFileName)".foreground.Red)
     }
 
     private func createEndpointsFile(inputFileName: String) throws {
+        let outputFileName = "Endpoints.swift"
         let data = try File(path: inputFileName).read()
 
         let decoder = JSONDecoder()
@@ -77,8 +87,10 @@ public final class SwiftyRestAPI {
 
         let apiGenerator = RequestrAPIGenerator(api: api)
         let endpointsText = apiGenerator.makeEndpointsFile()
-        let endpointsFile = try FileSystem().createFile(at: "Endpoints.swift")
+        let endpointsFile = try FileSystem().createFile(at: outputFileName)
         try endpointsFile.write(string: endpointsText)
+
+        print("Created file \(outputFileName)".foreground.Red)
     }
 
     private func createServiceFiles(inputFileName: String) throws {
@@ -90,28 +102,39 @@ public final class SwiftyRestAPI {
         let apiGenerator = RequestrAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
+        var outputFileNames: [String] = []
         for (idx, serviceText) in serviceTexts.enumerated() {
-            let serviceFile = try FileSystem().createFile(at: "Service\(idx).swift")
+            let outputFileName = "Service\(idx).swift"
+            let serviceFile = try FileSystem().createFile(at: outputFileName)
             try serviceFile.write(string: serviceText)
+            outputFileNames += [outputFileName]
         }
+
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
     }
 
 }
+
+// MARK: - Development Helper's
 
 private extension SwiftyRestAPI {
 
     func _createExampleApiInput() throws {
         let getUser = API.Endpoint(name: "getUser", resourceName: "User", isResourceArray: false, method: .GET, relativePath: "/users/1", urlParameters: [])
-        let getUsers = API.Endpoint(name: "getUsers", resourceName: "User", isResourceArray: true, method: .GET, relativePath: "/users", urlParameters: [])
         let postUser = API.Endpoint(name: "postUser", resourceName: "User", isResourceArray: false, method: .POST, relativePath: "/users/1", urlParameters: [])
+        let usersCategory = API.Category(name: "Users", endpoints: [getUser, postUser])
 
-        let category = API.Category(name: "Users", endpoints: [getUser, getUsers, postUser])
-        let api = API(basePath: "http://www.icalialabs.com/", categories: [category])
+        let getPlaces = API.Endpoint(name: "getPlaces", resourceName: "Place", isResourceArray: true, method: .GET, relativePath: "/places", urlParameters: [])
+        let postPlace = API.Endpoint(name: "postPlace", resourceName: "Place", isResourceArray: false, method: .POST, relativePath: "/places/1", urlParameters: [])
+        let putPlace = API.Endpoint(name: "putPlace", resourceName: "Place", isResourceArray: false, method: .PUT, relativePath: "/places/1", urlParameters: [])
+        let placesCategory = API.Category(name: "Places", endpoints: [getPlaces, postPlace, putPlace])
+
+        let api = API(basePath: "http://www.icalialabs.com/", categories: [usersCategory, placesCategory])
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try encoder.encode(api)
-        let file = try FileSystem().createFile(at: "ApiInputExample.json")
+        let file = try FileSystem().createFile(at: "ApiInput.json")
         try file.write(data: data)
     }
 
@@ -154,7 +177,7 @@ private extension SwiftyRestAPI {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let personData = try encoder.encode(person)
-        try FileSystem().createFile(at: "TestPerson.json", contents: personData)
+        try FileSystem().createFile(at: "Person.json", contents: personData)
     }
 
     func _createModelFile() throws {

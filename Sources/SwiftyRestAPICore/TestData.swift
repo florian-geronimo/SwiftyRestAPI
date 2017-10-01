@@ -9,13 +9,14 @@ import Foundation
 
 struct Person: Codable {
 
-    let name: String
+    let firstName: String
+    let lastName: String
     let age: Int
     let height: Double
     let isAdult: Bool
 
     static var testPerson: Person {
-        return Person(name: "Daniel Lozano", age: 28, height: 1.80, isAdult: true)
+        return Person(firstName: "Daniel", lastName: "Lozano", age: 28, height: 1.80, isAdult: true)
     }
 
 }
