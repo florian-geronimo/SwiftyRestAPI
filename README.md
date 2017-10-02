@@ -7,6 +7,7 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
 * [Team](#team)
 * [Setup the project](#setup-the-project)
 * [Running Swifty](#running-swifty)
+* [Examples](#examples)
 
 ### Team
 
