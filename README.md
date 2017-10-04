@@ -45,6 +45,20 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
 
 1. Run Swifty by typing in the terminal: `swifty`.
 
+2. You will get an interactive prompt that will guide you the rest of the way.
+
+### Current status
+
+- SwiftyRestAPI is in ALPHA stage. 
+- It was built as a proof of concept to see if doing something like this was possible with Swift & Swift Package Manager.
+
+#### Future Work
+##### These next steps are crucial in order to get it to Beta level:
+
+- Accept more input types (Postman, Paw, APIBlueprint, etc.)
+- Be able to generate more output types (Currently only supports Swift/Requestr generated code)
+- Be able to accept more Json Types. Nested dictionaries, arrays, and optionals, for example.
+
 ### Examples
 
 API input example:
