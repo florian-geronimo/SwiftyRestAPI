@@ -11,7 +11,7 @@ final class RequestrModelGenerator: ModelGenerator {
 
     struct Parameter {
         let name: String
-        let type: JSONType
+        let type: Type
         let value: Any
     }
 
@@ -37,33 +37,36 @@ final class RequestrModelGenerator: ModelGenerator {
 
     // MARK: - Helper's
 
+  private func findType(value:Any) -> Type {
+        let type: Type
+
+        switch value {
+        case is Bool:
+            type = .boolean
+        case is Int:
+            type = .int
+        case is Double:
+            type = .double
+        case is String:
+            type = .string
+        case let array as [Any]:
+            type = .array(findType(value: array[0]))
+        case is [String : Any]:
+            type = .dictionary
+        case is NSNull:
+            type = .null
+        default:
+            type = .unknown
+        }
+        return type
+  }
+
     private func makeParameters() -> [Parameter] {
         var parameters: [Parameter] = []
-
         for (key,value) in json {
-            let jsonType: JSONType
-
-            switch value {
-            case is Bool:
-                jsonType = .boolean
-            case is Int:
-                jsonType = .int
-            case is Double:
-                jsonType = .double
-            case is String:
-                jsonType = .string
-            case is [Any]:
-                jsonType = .array
-            case is [String : Any]:
-                jsonType = .dictionary
-            case is NSNull:
-                jsonType = .null
-            default:
-                jsonType = .unknown
-            }
-
-            let parameter = Parameter(name: key, type: jsonType, value: value)
-            parameters.append(parameter)
+          let type = findType(value: value)
+          let parameter = Parameter(name: key, type: type, value: value)
+          parameters.append(parameter)
         }
         return parameters
     }
