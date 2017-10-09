@@ -34,15 +34,24 @@ public final class SwiftyRestAPI {
         print("Model Generator".foreground.Red.background.Yellow.style.Bold)
 
         let requestrModelGenerator = "Requestr Model Generator".foreground.Blue.style.Underline
-        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator)
+        let codableModelGenerator = "Codable Model Generator".foreground.Blue.style.Underline
 
-        guard generatorChoice == requestrModelGenerator else {
-            return
-        }
+        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator, codableModelGenerator)
 
         let inputFileName = ask("What is the input JSON file name?".foreground.Yellow)
         let modelName = ask("What is this model's name?".foreground.Yellow)
-        try createModelFile(inputFileName: inputFileName, modelName: modelName)
+
+        switch generatorChoice {
+        case requestrModelGenerator:
+          try createRequestrModelFile(inputFileName: inputFileName, modelName: modelName)
+        case codableModelGenerator:
+          try createCodableModelFile(inputFileName: inputFileName, modelName: modelName)
+
+        default: return
+
+        }
+
+
 
         print("Done!".foreground.Red)
     }
@@ -66,11 +75,23 @@ public final class SwiftyRestAPI {
 
     // MARK: - Helper's
 
-    private func createModelFile(inputFileName: String, modelName: String) throws {
+    private func createRequestrModelFile(inputFileName: String, modelName: String) throws {
         let outputFileName = "\(modelName).swift"
         let inputData = try File(path: inputFileName).read()
 
         let modelGenerator = try RequestrModelGenerator(modelName: modelName, jsonData: inputData)
+        let modelText = modelGenerator.makeModelFile()
+        let modelFile = try FileSystem().createFile(at: outputFileName)
+        try modelFile.write(string: modelText)
+
+        print("Created file \(outputFileName)".foreground.Red)
+    }
+
+    private func createCodableModelFile(inputFileName: String, modelName: String) throws {
+        let outputFileName = "\(modelName).swift"
+        let inputData = try File(path: inputFileName).read()
+
+        let modelGenerator = try CodableModelGenerator(modelName: modelName, jsonData: inputData)
         let modelText = modelGenerator.makeModelFile()
         let modelFile = try FileSystem().createFile(at: outputFileName)
         try modelFile.write(string: modelText)
