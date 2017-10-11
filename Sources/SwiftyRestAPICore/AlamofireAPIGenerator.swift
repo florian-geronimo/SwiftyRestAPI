@@ -200,7 +200,7 @@ extension AlamofireAPIGenerator {
                 \(methodSignatureForEndpoint(endpoint)) {
                     let endpoint = Endpoint.\(endpoint.name)
 
-                    Alamofire.request(endpoint.fullPath, method: .\(endpoint.method).response { response in
+                    Alamofire.request(endpoint.fullPath, method: .\(endpoint.method.rawValue.lowercased())).response { response in
                         let decoder = JSONDecoder()
                         let \(resourceName.lowercased()) = try decoder.decode(\(resourceName).self, from: response)
                         completion(\(resourceName.lowercased()))
