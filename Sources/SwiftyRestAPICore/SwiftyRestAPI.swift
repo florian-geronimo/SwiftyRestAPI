@@ -51,15 +51,22 @@ public final class SwiftyRestAPI {
         print("API Generator".foreground.Red.background.Yellow.style.Bold)
 
         let requestrApiGenerator = "Requestr API Generator".foreground.Blue.style.Underline
-        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator)
+        let alamofireApiGenerator = "Alamofire API Generator".foreground.Blue.style.Underline
+        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator, alamofireApiGenerator)
 
-        guard generatorChoice == requestrApiGenerator else {
-            return
+        switch generatorChoice {
+        case requestrApiGenerator:
+          let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
+          try createEndpointsFile(inputFileName: inputFileName)
+          try createServiceFiles(inputFileName: inputFileName)
+        case alamofireApiGenerator:
+          let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
+          try createEndpointsFile(inputFileName: inputFileName)
+          try createAlamofireServiceFiles(inputFileName: inputFileName)
+        default: return
         }
 
-        let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
-        try createEndpointsFile(inputFileName: inputFileName)
-        try createServiceFiles(inputFileName: inputFileName)
+
 
         print("Finished!".foreground.Red)
     }
@@ -99,7 +106,27 @@ public final class SwiftyRestAPI {
         let decoder = JSONDecoder()
         let api = try decoder.decode(API.self, from: data)
 
-        let apiGenerator = RequestrAPIGenerator(api: api)
+        let apiGenerator = AlamofireAPIGenerator(api: api)
+        let serviceTexts = apiGenerator.makeServiceFiles()
+
+        var outputFileNames: [String] = []
+        for (idx, serviceText) in serviceTexts.enumerated() {
+            let outputFileName = "Service\(idx).swift"
+            let serviceFile = try FileSystem().createFile(at: outputFileName)
+            try serviceFile.write(string: serviceText)
+            outputFileNames += [outputFileName]
+        }
+
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
+    }
+
+    private func createAlamofireServiceFiles(inputFileName: String) throws {
+        let data = try File(path: inputFileName).read()
+
+        let decoder = JSONDecoder()
+        let api = try decoder.decode(API.self, from: data)
+
+        let apiGenerator = AlamofireAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
         var outputFileNames: [String] = []
