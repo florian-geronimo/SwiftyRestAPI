@@ -51,7 +51,7 @@ extension CodableModelGenerator {
     private func makeParameters() -> [Parameter] {
         var parameters: [Parameter] = []
         for (key,value) in json {
-          let type = ModelGenerator.findType(value: value)
+          let type = findType(value: value)
           let parameter = Parameter(name: key, type: type, value: value)
           parameters.append(parameter)
         }
