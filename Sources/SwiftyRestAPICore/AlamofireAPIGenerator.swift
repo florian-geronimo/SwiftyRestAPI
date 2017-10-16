@@ -2,7 +2,7 @@ import Foundation
 
 final class AlamofireAPIGenerator: APIGenerator {
 
-    internal let api: API
+    let api: API
 
     lazy var basePath: String = {
         return api.basePath
@@ -17,7 +17,6 @@ final class AlamofireAPIGenerator: APIGenerator {
     init(api: API) {
         self.api = api
     }
-
 
 }
 
