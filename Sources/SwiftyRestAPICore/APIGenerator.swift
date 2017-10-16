@@ -11,6 +11,12 @@ import Foundation
 typealias FileText = String
 
 protocol APIGenerator {
+    
+    var api: API { get }
+    
+    var basePath: String { get }
+    
+    var allEndpoints: [API.Endpoint] { get }
 
     init(api: API)
 
