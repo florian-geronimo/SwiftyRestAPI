@@ -1,7 +1,9 @@
+import Foundation
+
 class PostmanConvertr {
-    
+
   static let shared = PostmanConvertr()
-    
+
   func convert(json: JSONDictionary) -> API {
      let basePath = getBasePath(json: json)
      let categories = getCategories(json: json)
@@ -17,7 +19,8 @@ class PostmanConvertr {
 
     let jsonCategories = json["item"] as! [[String:Any]]
     for jsonCategory in jsonCategories {
-      let name = jsonCategory["name"] as! String
+      let name = (jsonCategory["name"] as! String).trimmingCharacters(in: .whitespaces)
+
       let endpoints = getEndpoints(item: jsonCategory["item"] as! [[String:Any]])
       let category = API.Category(name: name, endpoints: endpoints)
       categories.append(category)
@@ -31,18 +34,21 @@ class PostmanConvertr {
     for dictPostmanEndpoint in item {
         let request = dictPostmanEndpoint["request"] as! [String:Any]
         let method = HTTPMethod(rawValue: request["method"] as! String)!
-        
+        let name = (dictPostmanEndpoint["name"] as! String).replacingOccurrences(of: " ", with: "")
         let relativePath = request["url"] as! String
-        endpoints.append(API.Endpoint(name: dictPostmanEndpoint["name"] as! String,
-                                  resourceName: dictPostmanEndpoint["name"] as! String ,
+
+        let endpoint = API.Endpoint(name: name,
+                                  resourceName: name,
                                   isResourceArray: false,
                                   method: method,
                                   relativePath:relativePath,
-                                  urlParameters:[]))
+                                  urlParameters:[])
+        endpoints.append(endpoint)
     }
-    
+
     return endpoints
 
   }
+
 
 }
