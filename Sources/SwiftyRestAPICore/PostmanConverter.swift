@@ -51,4 +51,26 @@ class PostmanConvertr {
   }
 
 
+
+
+}
+
+extension String {
+    func capitalizeFirst() -> String {
+        var result = self
+
+        let substr1 = String(self[startIndex]).uppercased()
+        result.replaceSubrange(...startIndex, with: substr1)
+
+        return result
+    }
+
+    func lowercaseFirst() -> String {
+        var result = self
+
+        let substr1 = String(self[startIndex]).lowercased()
+        result.replaceSubrange(...startIndex, with: substr1)
+
+        return result
+    }
 }

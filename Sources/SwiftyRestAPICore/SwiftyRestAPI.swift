@@ -11,7 +11,7 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        try runCLIApp()
+      try runCLIApp()
     }
 
     // MARK: - CLI App
@@ -166,6 +166,26 @@ public final class SwiftyRestAPI {
 // MARK: - Development Helper's
 
 private extension SwiftyRestAPI {
+
+    func _postmanConverter() throws {
+        let inputFileName = ask("What is the input postman API doc file name?".foreground.Yellow)
+        let data = try File(path: inputFileName).read()
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+        let api = PostmanConvertr.shared.convert(json: json!)
+        let apiGenerator = AlamofireAPIGenerator(api: api )
+        let serviceTexts = apiGenerator.makeServiceFiles()
+
+        var outputFileNames: [String] = []
+        for (idx, serviceText) in serviceTexts.enumerated() {
+            let outputFileName = "Service\(idx).swift"
+            let serviceFile = try FileSystem().createFile(at: outputFileName)
+            try serviceFile.write(string: serviceText)
+            outputFileNames += [outputFileName]
+        }
+
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
+
+    }
 
     func _createExampleApiInput() throws {
         let getUser = API.Endpoint(name: "getUser", resourceName: "User", isResourceArray: false, method: .GET, relativePath: "/users/1", urlParameters: [])
