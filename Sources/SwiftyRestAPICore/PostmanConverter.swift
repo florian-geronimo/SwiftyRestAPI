@@ -34,11 +34,11 @@ class PostmanConvertr {
     for dictPostmanEndpoint in item {
         let request = dictPostmanEndpoint["request"] as! [String:Any]
         let method = HTTPMethod(rawValue: request["method"] as! String)!
-        let name = (dictPostmanEndpoint["name"] as! String).replacingOccurrences(of: " ", with: "")
+        let name = (dictPostmanEndpoint["name"] as! String).replacingOccurrences(of: " ", with: "").lowercaseFirst()
         let relativePath = request["url"] as! String
 
         let endpoint = API.Endpoint(name: name,
-                                  resourceName: name,
+                                  resourceName: name.capitalizeFirst(),
                                   isResourceArray: false,
                                   method: method,
                                   relativePath:relativePath,
@@ -49,16 +49,11 @@ class PostmanConvertr {
     return endpoints
 
   }
-
-
-
-
 }
 
 extension String {
     func capitalizeFirst() -> String {
         var result = self
-
         let substr1 = String(self[startIndex]).uppercased()
         result.replaceSubrange(...startIndex, with: substr1)
 
@@ -67,10 +62,15 @@ extension String {
 
     func lowercaseFirst() -> String {
         var result = self
-
         let substr1 = String(self[startIndex]).lowercased()
         result.replaceSubrange(...startIndex, with: substr1)
 
         return result
     }
+    
+// TODO: get the base path of a url
+//    func getBasePath(url:String) -> String {
+//        return ""
+//    }
+    
 }
