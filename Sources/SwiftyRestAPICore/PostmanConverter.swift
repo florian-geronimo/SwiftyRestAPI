@@ -11,7 +11,15 @@ class PostmanConvertr {
   }
 
   private func getBasePath(json: JSONDictionary) -> String {
-    return ""
+     let jsonCategories = json["item"] as! [[String:Any]]
+     let jsonCategory = jsonCategories[0]
+     let jsonItems = jsonCategory["item"] as! [[String:Any]]
+     let jsonItem = jsonItems[0]
+     let request = jsonItem["request"] as! [String:Any]
+
+     let url = request["url"] as! String
+     return String.getBasePath(url:url)
+
   }
 
   private func getCategories(json: JSONDictionary) -> [API.Category] {
@@ -19,29 +27,29 @@ class PostmanConvertr {
 
     let jsonCategories = json["item"] as! [[String:Any]]
     for jsonCategory in jsonCategories {
-      let name = (jsonCategory["name"] as! String).trimmingCharacters(in: .whitespaces)
+        let name = (jsonCategory["name"] as! String).trimmingCharacters(in: .whitespaces)
 
-      let endpoints = getEndpoints(item: jsonCategory["item"] as! [[String:Any]])
-      let category = API.Category(name: name, endpoints: endpoints)
-      categories.append(category)
+        let endpoints = getEndpoints(item: jsonCategory["item"] as! [[String:Any]])
+        let category = API.Category(name: name, endpoints: endpoints)
+        categories.append(category)
     }
     return categories
   }
 
-  private func getEndpoints(item:[[String:Any]]) -> [API.Endpoint] {
+  private func getEndpoints(item: [[String:Any]]) -> [API.Endpoint] {
     var endpoints = [API.Endpoint]()
 
     for dictPostmanEndpoint in item {
         let request = dictPostmanEndpoint["request"] as! [String:Any]
         let method = HTTPMethod(rawValue: request["method"] as! String)!
         let name = (dictPostmanEndpoint["name"] as! String).replacingOccurrences(of: " ", with: "").lowercaseFirst()
-        let relativePath = request["url"] as! String
+        let relativePath = (request["url"] as! String)
 
         let endpoint = API.Endpoint(name: name,
                                   resourceName: name.capitalizeFirst(),
                                   isResourceArray: false,
                                   method: method,
-                                  relativePath:relativePath,
+                                  relativePath: String.getEndpoint(url: relativePath),
                                   urlParameters:[])
         endpoints.append(endpoint)
     }
@@ -67,10 +75,38 @@ extension String {
 
         return result
     }
-    
-// TODO: get the base path of a url
-//    func getBasePath(url:String) -> String {
-//        return ""
-//    }
-    
+
+    static func getBasePath(url:String) -> String {
+        var ocurrance = 0
+        let index = url.index { (character) -> Bool in
+            if character == "/" {
+                ocurrance += 1
+                if ocurrance == 3 {
+                    return true
+                }
+            }
+            return false
+        }
+
+        let basePath = String(url[..<index!])
+
+        return basePath
+    }
+
+    static func getEndpoint(url:String) -> String {
+        var ocurrance = 0
+        let index = url.index { (character) -> Bool in
+            if character == "/" {
+                ocurrance += 1
+                if ocurrance == 3 {
+                    return true
+                }
+            }
+            return false
+        }
+        let basePath = String(url[index!...])
+
+        return basePath
+    }
+
 }

@@ -51,8 +51,6 @@ public final class SwiftyRestAPI {
 
         }
 
-
-
         print("Done!".foreground.Red)
     }
 
@@ -182,13 +180,13 @@ private extension SwiftyRestAPI {
             try serviceFile.write(string: serviceText)
             outputFileNames += [outputFileName]
         }
-        
+
         let outputFileName = "Endpoints.swift"
-        
+
         let endpointsText = apiGenerator.makeEndpointsFile()
         let endpointsFile = try FileSystem().createFile(at: outputFileName)
         try endpointsFile.write(string: endpointsText)
-        
+
         print("Created file \(outputFileName)".foreground.Red)
         print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
 
