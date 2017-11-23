@@ -16,75 +16,46 @@ public final class SwiftyRestAPI {
 
     // MARK: - CLI App
 
-    private func runCLIApp() throws {
-        print("Welcome to SwiftyRestAPI generator!".foreground.Red.background.Yellow.style.Bold)
+  private
 
-        let modelGenerator = "Model Generator".foreground.Blue.style.Underline
-        let apiGenerator = "API Generator".foreground.Blue.style.Underline
-        let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow, choices: modelGenerator, apiGenerator)
-
-        if featureChoice == modelGenerator {
-            try choseModelGenerator()
-        } else if featureChoice == apiGenerator {
-            try choseApiGenerator()
-        }
+    func runCLIApp() throws {
+        print("Welcome to SwiftyRestAPI generator!".foreground.Yellow.style.Bold)
+        try chooseGenerator()
     }
 
-    private func choseModelGenerator() throws {
-        print("Model Generator".foreground.Red.background.Yellow.style.Bold)
+    func chooseGenerator() throws {
 
-        let requestrModelGenerator = "Requestr Model Generator".foreground.Blue.style.Underline
-        let codableModelGenerator = "Codable Model Generator".foreground.Blue.style.Underline
+      //Generator options
+      let modelGenerator = "Model Generator".foreground.Red.style.Underline
+      let apiGenerator = "API Generator".foreground.Red.style.Underline
 
-        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator, codableModelGenerator)
+      //Asks for a generator
+      let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow , choices: modelGenerator, apiGenerator)
 
-        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow)
-        let modelName = ask("What is this model's name?".foreground.Yellow)
-
-        switch generatorChoice {
-        case requestrModelGenerator:
-          try createRequestrModelFile(inputFileName: inputFileName, modelName: modelName)
-        case codableModelGenerator:
-          try createCodableModelFile(inputFileName: inputFileName, modelName: modelName)
-
-        default: return
-
-        }
-
-        print("Done!".foreground.Red)
-    }
-
-    enum InputTypes {
-    case postman
-    case swifty
-    }
-
-    private func chooseInputType() -> InputTypes {
-      let postmanChoice = "Postman API json file"
-      let swiftyRestAPIChoice = "Swifty API json file"
-      let inputChoice = choose("Ok! What is the input API doc file type?\n".foreground.Yellow,
-    choices: postmanChoice, swiftyRestAPIChoice)
-
-      switch inputChoice {
-      case postmanChoice:
-        return .postman
-      case swiftyRestAPIChoice:
-        return .swifty
-      default:
-        return .swifty
+      if featureChoice == modelGenerator {
+          try chooseModelGenerator()
+      } else if featureChoice == apiGenerator {
+          try chooseApiGenerator()
       }
-
     }
 
-    private func choseApiGenerator() throws {
-        print("API Generator".foreground.Red.background.Yellow.style.Bold)
+    func chooseApiGenerator() throws {
+        print("API Generator".foreground.Yellow.style.Bold)
 
-        let requestrApiGenerator = "Requestr API Generator".foreground.Blue.style.Underline
-        let alamofireApiGenerator = "Alamofire API Generator".foreground.Blue.style.Underline
+        //Api generator options
+        let requestrApiGenerator = "Requestr API Generator".foreground.Red.style.Underline
+        let alamofireApiGenerator = "Alamofire API Generator".foreground.Red.style.Underline
+
+        //Asks for a Api generator
         let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator, alamofireApiGenerator)
 
+        //Asks for the input type
         let fileType = chooseInputType()
+
+        //Asks for the input file name
         let fileName = ask("What is the input API doc file name?".foreground.Yellow)
+
+        //Converts the input file to a API instance
         let api: API
         switch fileType {
         case .postman:
@@ -95,6 +66,7 @@ public final class SwiftyRestAPI {
           api = try fileNameToAPI(inputFileName: fileName )
         }
 
+        //Creates files with the corresponding generator
         switch generatorChoice {
         case requestrApiGenerator:
           try createEndpointsFile(api: api)
@@ -108,6 +80,47 @@ public final class SwiftyRestAPI {
         print("Finished!".foreground.Red)
     }
 
+    func chooseModelGenerator() throws {
+        print("Model Generator".foreground.Yellow.style.Bold)
+
+        //Model generator options
+        let requestrModelGenerator = "Requestr Model Generator".foreground.Red.style.Underline
+        let codableModelGenerator = "Codable Model Generator".foreground.Red.style.Underline
+
+        //Asks for a model generator
+        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator, codableModelGenerator)
+
+        //Asks for the input file name and the model name
+        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow)
+        let modelName = ask("What is this model's name?".foreground.Yellow)
+
+        switch generatorChoice {
+        case requestrModelGenerator:
+          try createRequestrModelFile(inputFileName: inputFileName, modelName: modelName)
+        case codableModelGenerator:
+          try createCodableModelFile(inputFileName: inputFileName, modelName: modelName)
+        default: return
+        }
+
+        print("Done!".foreground.Green)
+    }
+
+    func chooseInputType() -> InputTypes {
+      let postmanChoice = "Postman API json file".foreground.Red.style.Underline
+      let swiftyRestAPIChoice = "Swifty API json file".foreground.Red.style.Underline
+      let inputChoice = choose("Ok! What is the input API doc file type?\n".foreground.Yellow, choices: postmanChoice, swiftyRestAPIChoice)
+
+      switch inputChoice {
+      case postmanChoice:
+        return .postman
+      case swiftyRestAPIChoice:
+        return .swifty
+      default:
+        return .swifty
+      }
+
+    }
+
     func fileNameToAPI(inputFileName: String) throws -> API {
       let data = try File(path: inputFileName).read()
       let decoder = JSONDecoder()
@@ -117,7 +130,7 @@ public final class SwiftyRestAPI {
 
     // MARK: - Helper's
 
-    private func createRequestrModelFile(inputFileName: String, modelName: String) throws {
+    func createRequestrModelFile(inputFileName: String, modelName: String) throws {
         let outputFileName = "\(modelName).swift"
         let inputData = try File(path: inputFileName).read()
 
@@ -129,7 +142,7 @@ public final class SwiftyRestAPI {
         print("Created file \(outputFileName)".foreground.Red)
     }
 
-    private func createCodableModelFile(inputFileName: String, modelName: String) throws {
+     func createCodableModelFile(inputFileName: String, modelName: String) throws {
         let outputFileName = "\(modelName).swift"
         let inputData = try File(path: inputFileName).read()
 
@@ -138,20 +151,20 @@ public final class SwiftyRestAPI {
         let modelFile = try FileSystem().createFile(at: outputFileName)
         try modelFile.write(string: modelText)
 
-        print("Created file \(outputFileName)".foreground.Red)
+        print("Created file \(outputFileName)".foreground.Green)
     }
 
-    private func createEndpointsFile(api: API) throws {
+     func createEndpointsFile(api: API) throws {
         let outputFileName = "Endpoints.swift"
         let apiGenerator = RequestrAPIGenerator(api: api)
         let endpointsText = apiGenerator.makeEndpointsFile()
         let endpointsFile = try FileSystem().createFile(at: outputFileName)
         try endpointsFile.write(string: endpointsText)
 
-        print("Created file \(outputFileName)".foreground.Red)
+        print("Created file \(outputFileName)".foreground.Green)
     }
 
-    private func createServiceFiles(api: API) throws {
+     func createServiceFiles(api: API) throws {
         let apiGenerator = AlamofireAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
@@ -163,11 +176,10 @@ public final class SwiftyRestAPI {
             outputFileNames += [outputFileName]
         }
 
-        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
     }
 
-    private func createAlamofireServiceFiles(api: API) throws {
-
+     func createAlamofireServiceFiles(api: API) throws {
         let apiGenerator = AlamofireAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
@@ -179,113 +191,11 @@ public final class SwiftyRestAPI {
             outputFileNames += [outputFileName]
         }
 
-        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
     }
 
 }
 
-// MARK: - Development Helper's
-
-private extension SwiftyRestAPI {
-
-    func _postmanConverter() throws {
-        let inputFileName = ask("What is the input postman API doc file name?".foreground.Yellow)
-        let data = try File(path: inputFileName).read()
-        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-        let api = PostmanConvertr.shared.convert(json: json!)
-        let apiGenerator = AlamofireAPIGenerator(api: api )
-        let serviceTexts = apiGenerator.makeServiceFiles()
-
-        var outputFileNames: [String] = []
-        for (idx, serviceText) in serviceTexts.enumerated() {
-            let outputFileName = "Service\(idx).swift"
-            let serviceFile = try FileSystem().createFile(at: outputFileName)
-            try serviceFile.write(string: serviceText)
-            outputFileNames += [outputFileName]
-        }
-
-        let outputFileName = "Endpoints.swift"
-
-        let endpointsText = apiGenerator.makeEndpointsFile()
-        let endpointsFile = try FileSystem().createFile(at: outputFileName)
-        try endpointsFile.write(string: endpointsText)
-
-        print("Created file \(outputFileName)".foreground.Red)
-        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
-
-    }
-
-    func _createExampleApiInput() throws {
-        let getUser = API.Endpoint(name: "getUser", resourceName: "User", isResourceArray: false, method: .GET, relativePath: "/users/1", urlParameters: [])
-        let postUser = API.Endpoint(name: "postUser", resourceName: "User", isResourceArray: false, method: .POST, relativePath: "/users/1", urlParameters: [])
-        let usersCategory = API.Category(name: "Users", endpoints: [getUser, postUser])
-
-        let getPlaces = API.Endpoint(name: "getPlaces", resourceName: "Place", isResourceArray: true, method: .GET, relativePath: "/places", urlParameters: [])
-        let postPlace = API.Endpoint(name: "postPlace", resourceName: "Place", isResourceArray: false, method: .POST, relativePath: "/places/1", urlParameters: [])
-        let putPlace = API.Endpoint(name: "putPlace", resourceName: "Place", isResourceArray: false, method: .PUT, relativePath: "/places/1", urlParameters: [])
-        let placesCategory = API.Category(name: "Places", endpoints: [getPlaces, postPlace, putPlace])
-
-        let api = API(basePath: "http://www.icalialabs.com/", categories: [usersCategory, placesCategory])
-
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        let data = try encoder.encode(api)
-        let file = try FileSystem().createFile(at: "ApiInput.json")
-        try file.write(data: data)
-    }
-
-    func _readExampleApiInput() throws {
-        let filePath = ask("What file?")
-        let data = try File(path: filePath).read()
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-        print("SUCCESS")
-        print(api)
-    }
-
-    func _createEndpointsFile() throws {
-        let data = try File(path: "ApiInputExample.json").read()
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-
-        let apiGenerator = RequestrAPIGenerator(api: api)
-        let endpointsText = apiGenerator.makeEndpointsFile()
-        let endpointsFile = try FileSystem().createFile(at: "Endpoints.swift")
-        try endpointsFile.write(string: endpointsText)
-    }
-
-    func _createServiceFiles() throws {
-        let data = try File(path: "ApiInputExample.json").read()
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-
-        let apiGenerator = RequestrAPIGenerator(api: api)
-        let serviceTexts = apiGenerator.makeServiceFiles()
-
-        for (idx, serviceText) in serviceTexts.enumerated() {
-            let serviceFile = try FileSystem().createFile(at: "Service\(idx).swift")
-            try serviceFile.write(string: serviceText)
-        }
-    }
-
-    func _createModelSampleJson() throws {
-        let person = Person.testPerson
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        let personData = try encoder.encode(person)
-        try FileSystem().createFile(at: "Person.json", contents: personData)
-    }
-
-    func _createModelFile() throws {
-        let data = try File(path: "TestPerson.json").read()
-
-        let modelGenerator = try RequestrModelGenerator(modelName: "Person", jsonData: data)
-        let modelText = modelGenerator.makeModelFile()
-        let modelFile = try FileSystem().createFile(at: "TestPerson.swift")
-        try modelFile.write(string: modelText)
-    }
-
-}
 
 public extension SwiftyRestAPI {
 
