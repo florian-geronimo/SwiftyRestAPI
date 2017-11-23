@@ -11,7 +11,7 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-        try runCLIApp()
+       try runCLIApp()
     }
 
     // MARK: - CLI App
@@ -51,9 +51,29 @@ public final class SwiftyRestAPI {
 
         }
 
-
-
         print("Done!".foreground.Red)
+    }
+
+    enum InputTypes {
+    case postman
+    case swifty
+    }
+
+    private func chooseInputType() -> InputTypes {
+      let postmanChoice = "Postman API json file"
+      let swiftyRestAPIChoice = "Swifty API json file"
+      let inputChoice = choose("Ok! What is the input API doc file type?\n".foreground.Yellow,
+    choices: postmanChoice, swiftyRestAPIChoice)
+
+      switch inputChoice {
+      case postmanChoice:
+        return .postman
+      case swiftyRestAPIChoice:
+        return .swifty
+      default:
+        return .swifty
+      }
+
     }
 
     private func choseApiGenerator() throws {
@@ -63,21 +83,36 @@ public final class SwiftyRestAPI {
         let alamofireApiGenerator = "Alamofire API Generator".foreground.Blue.style.Underline
         let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator, alamofireApiGenerator)
 
+        let fileType = chooseInputType()
+        let fileName = ask("What is the input API doc file name?".foreground.Yellow)
+        let api: API
+        switch fileType {
+        case .postman:
+          let data = try File(path: fileName).read()
+          let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          api = PostmanConvertr.shared.convert(json: json!)
+        case .swifty:
+          api = try fileNameToAPI(inputFileName: fileName )
+        }
+
         switch generatorChoice {
         case requestrApiGenerator:
-          let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
-          try createEndpointsFile(inputFileName: inputFileName)
-          try createServiceFiles(inputFileName: inputFileName)
+          try createEndpointsFile(api: api)
+          try createServiceFiles(api: api)
         case alamofireApiGenerator:
-          let inputFileName = ask("What is the input API doc file name?".foreground.Yellow)
-          try createEndpointsFile(inputFileName: inputFileName)
-          try createAlamofireServiceFiles(inputFileName: inputFileName)
+          try createEndpointsFile(api: api)
+          try createAlamofireServiceFiles(api: api)
         default: return
         }
 
-
-
         print("Finished!".foreground.Red)
+    }
+
+    func fileNameToAPI(inputFileName: String) throws -> API {
+      let data = try File(path: inputFileName).read()
+      let decoder = JSONDecoder()
+      let api = try decoder.decode(API.self, from: data)
+      return api
     }
 
     // MARK: - Helper's
@@ -106,13 +141,8 @@ public final class SwiftyRestAPI {
         print("Created file \(outputFileName)".foreground.Red)
     }
 
-    private func createEndpointsFile(inputFileName: String) throws {
+    private func createEndpointsFile(api: API) throws {
         let outputFileName = "Endpoints.swift"
-        let data = try File(path: inputFileName).read()
-
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-
         let apiGenerator = RequestrAPIGenerator(api: api)
         let endpointsText = apiGenerator.makeEndpointsFile()
         let endpointsFile = try FileSystem().createFile(at: outputFileName)
@@ -121,12 +151,7 @@ public final class SwiftyRestAPI {
         print("Created file \(outputFileName)".foreground.Red)
     }
 
-    private func createServiceFiles(inputFileName: String) throws {
-        let data = try File(path: inputFileName).read()
-
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
-
+    private func createServiceFiles(api: API) throws {
         let apiGenerator = AlamofireAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
@@ -141,11 +166,7 @@ public final class SwiftyRestAPI {
         print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
     }
 
-    private func createAlamofireServiceFiles(inputFileName: String) throws {
-        let data = try File(path: inputFileName).read()
-
-        let decoder = JSONDecoder()
-        let api = try decoder.decode(API.self, from: data)
+    private func createAlamofireServiceFiles(api: API) throws {
 
         let apiGenerator = AlamofireAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
@@ -166,6 +187,33 @@ public final class SwiftyRestAPI {
 // MARK: - Development Helper's
 
 private extension SwiftyRestAPI {
+
+    func _postmanConverter() throws {
+        let inputFileName = ask("What is the input postman API doc file name?".foreground.Yellow)
+        let data = try File(path: inputFileName).read()
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+        let api = PostmanConvertr.shared.convert(json: json!)
+        let apiGenerator = AlamofireAPIGenerator(api: api )
+        let serviceTexts = apiGenerator.makeServiceFiles()
+
+        var outputFileNames: [String] = []
+        for (idx, serviceText) in serviceTexts.enumerated() {
+            let outputFileName = "Service\(idx).swift"
+            let serviceFile = try FileSystem().createFile(at: outputFileName)
+            try serviceFile.write(string: serviceText)
+            outputFileNames += [outputFileName]
+        }
+
+        let outputFileName = "Endpoints.swift"
+
+        let endpointsText = apiGenerator.makeEndpointsFile()
+        let endpointsFile = try FileSystem().createFile(at: outputFileName)
+        try endpointsFile.write(string: endpointsText)
+
+        print("Created file \(outputFileName)".foreground.Red)
+        print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Red)
+
+    }
 
     func _createExampleApiInput() throws {
         let getUser = API.Endpoint(name: "getUser", resourceName: "User", isResourceArray: false, method: .GET, relativePath: "/users/1", urlParameters: [])
