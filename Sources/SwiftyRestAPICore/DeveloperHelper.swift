@@ -1,6 +1,9 @@
 // MARK: - Development Helper's
+import Foundation
+import Files
+import Swiftline
 
-private extension SwiftyRestAPI {
+extension SwiftyRestAPI {
 
     func _postmanConverter() throws {
         let inputFileName = ask("What is the input postman API doc file name?".foreground.Yellow)

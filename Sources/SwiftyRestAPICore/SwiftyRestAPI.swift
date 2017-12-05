@@ -11,7 +11,7 @@ public final class SwiftyRestAPI {
     }
 
     public func run() throws {
-       try runCLIApp()
+        try runCLIApp()
     }
 
     // MARK: - CLI App
@@ -118,8 +118,9 @@ public final class SwiftyRestAPI {
       default:
         return .swifty
       }
-
     }
+
+    // MARK: - Helper's
 
     func fileNameToAPI(inputFileName: String) throws -> API {
       let data = try File(path: inputFileName).read()
@@ -127,8 +128,6 @@ public final class SwiftyRestAPI {
       let api = try decoder.decode(API.self, from: data)
       return api
     }
-
-    // MARK: - Helper's
 
     func createRequestrModelFile(inputFileName: String, modelName: String) throws {
         let outputFileName = "\(modelName).swift"
@@ -193,9 +192,7 @@ public final class SwiftyRestAPI {
 
         print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
     }
-
 }
-
 
 public extension SwiftyRestAPI {
 
