@@ -129,28 +129,22 @@ public final class SwiftyRestAPI {
       return api
     }
 
-    func createRequestrModelFile(inputFileName: String, modelName: String) throws {
-        let outputFileName = "\(modelName).swift"
-        let inputData = try File(path: inputFileName).read()
+    func createModelFile(inputFileName: String, modelName: String, fileType:String) {
+      let outputFileName = "\(modelName).swift"
+      let inputData = try File(path: inputFileName).read()
+      let modelGenerator: ModelGenerator
 
-        let modelGenerator = try RequestrModelGenerator(modelName: modelName, jsonData: inputData)
-        let modelText = modelGenerator.makeModelFile()
-        let modelFile = try FileSystem().createFile(at: outputFileName)
-        try modelFile.write(string: modelText)
+      if fileType == "Requestr" {
+        modelGenerator = try RequestrModelGenerator(modelName: modelName, jsonData: inputData)
+      } else if fileType == "Codable" {
+        modelGenerator = try CodableModelGenerator(modelName: modelName, jsonData: inputData)
+      }
 
-        print("Created file \(outputFileName)".foreground.Red)
-    }
+      let modelText = modelGenerator.makeModelFile()
+      let modelFile = try FileSystem().createFile(at: outputFileName)
+      try modelFile.write(string: modelText)
 
-     func createCodableModelFile(inputFileName: String, modelName: String) throws {
-        let outputFileName = "\(modelName).swift"
-        let inputData = try File(path: inputFileName).read()
-
-        let modelGenerator = try CodableModelGenerator(modelName: modelName, jsonData: inputData)
-        let modelText = modelGenerator.makeModelFile()
-        let modelFile = try FileSystem().createFile(at: outputFileName)
-        try modelFile.write(string: modelText)
-
-        print("Created file \(outputFileName)".foreground.Green)
+      print("Created file \(outputFileName)".foreground.Red)
     }
 
      func createEndpointsFile(api: API) throws {
