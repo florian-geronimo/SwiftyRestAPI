@@ -30,7 +30,7 @@ public final class SwiftyRestAPI {
       let apiGenerator = "API Generator".foreground.Red.style.Underline
 
       //Asks for a generator
-      let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow , choices: modelGenerator, apiGenerator)
+      let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow, choices: modelGenerator, apiGenerator)
 
       if featureChoice == modelGenerator {
           try chooseModelGenerator()
@@ -96,9 +96,9 @@ public final class SwiftyRestAPI {
 
         switch generatorChoice {
         case requestrModelGenerator:
-          try createRequestrModelFile(inputFileName: inputFileName, modelName: modelName)
+            try createModelFile(inputFileName: inputFileName, modelName: modelName, fileType: "Requestr")
         case codableModelGenerator:
-          try createCodableModelFile(inputFileName: inputFileName, modelName: modelName)
+            try createModelFile(inputFileName: inputFileName, modelName: modelName, fileType: "Codable")
         default: return
         }
 
@@ -129,14 +129,14 @@ public final class SwiftyRestAPI {
       return api
     }
 
-    func createModelFile(inputFileName: String, modelName: String, fileType:String) {
+    func createModelFile(inputFileName: String, modelName: String, fileType: String) throws {
       let outputFileName = "\(modelName).swift"
       let inputData = try File(path: inputFileName).read()
       let modelGenerator: ModelGenerator
 
       if fileType == "Requestr" {
         modelGenerator = try RequestrModelGenerator(modelName: modelName, jsonData: inputData)
-      } else if fileType == "Codable" {
+      } else {
         modelGenerator = try CodableModelGenerator(modelName: modelName, jsonData: inputData)
       }
 

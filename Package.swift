@@ -13,7 +13,7 @@ let package = Package(
         .package(
             url: "https://github.com/nsomar/Swiftline.git",
             from: "0.5.0"
-        ),
+        )
     ],
     targets: [
         .target(
@@ -22,7 +22,7 @@ let package = Package(
         ),
         .target(
             name: "SwiftyRestAPICore",
-            dependencies: ["Files","Swiftline"]
+            dependencies: ["Files", "Swiftline"]
         ),
         .testTarget(
           name: "SwiftyRestAPITests",

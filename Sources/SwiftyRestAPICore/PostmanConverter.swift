@@ -76,7 +76,7 @@ extension String {
         return result
     }
 
-    static func getBasePath(url:String) -> String {
+    static func getBasePath(url: String) -> String {
         var ocurrance = 0
         let index = url.index { (character) -> Bool in
             if character == "/" {
@@ -93,7 +93,7 @@ extension String {
         return basePath
     }
 
-    static func getEndpoint(url:String) -> String {
+    static func getEndpoint(url: String) -> String {
         var ocurrance = 0
         let index = url.index { (character) -> Bool in
             if character == "/" {

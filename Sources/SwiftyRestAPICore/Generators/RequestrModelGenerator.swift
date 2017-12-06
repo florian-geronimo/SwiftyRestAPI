@@ -39,7 +39,7 @@ final class RequestrModelGenerator: ModelGenerator {
 
     private func makeParameters() -> [Parameter] {
         var parameters: [Parameter] = []
-        for (key,value) in json {
+        for (key, value) in json {
           let type = findType(value: value)
           let parameter = Parameter(name: key, type: type, value: value)
           parameters.append(parameter)
