@@ -26,11 +26,11 @@ public final class SwiftyRestAPI {
     func chooseGenerator() throws {
 
       //Generator options
-      let modelGenerator = "Model Generator".foreground.Red.style.Underline
-      let apiGenerator = "API Generator".foreground.Red.style.Underline
+      let modelGenerator = "Model Generator".foreground.Red.style.Bold
+      let apiGenerator = "API Generator".foreground.Red.style.Bold
 
       //Asks for a generator
-      let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow, choices: modelGenerator, apiGenerator)
+      let featureChoice = choose("What feature do you want to use?\n".foreground.Yellow.style.Bold, choices: modelGenerator, apiGenerator)
 
       if featureChoice == modelGenerator {
           try chooseModelGenerator()
@@ -40,20 +40,20 @@ public final class SwiftyRestAPI {
     }
 
     func chooseApiGenerator() throws {
-        print("API Generator".foreground.Yellow.style.Bold)
+        print("\nAPI Generator".foreground.Yellow.style.Bold)
 
         //Api generator options
-        let requestrApiGenerator = "Requestr API Generator".foreground.Red.style.Underline
-        let alamofireApiGenerator = "Alamofire API Generator".foreground.Red.style.Underline
+        let requestrApiGenerator = "Requestr API Generator".foreground.Red.style.Bold
+        let alamofireApiGenerator = "Alamofire API Generator".foreground.Red.style.Bold
 
         //Asks for a Api generator
-        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow, choices: requestrApiGenerator, alamofireApiGenerator)
+        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrApiGenerator, alamofireApiGenerator)
 
         //Asks for the input type
         let fileType = chooseInputType()
 
         //Asks for the input file name
-        let fileName = ask("What is the input API doc file name?".foreground.Yellow)
+        let fileName = ask("What is the input API doc file name?".foreground.Yellow.style.Bold)
 
         //Converts the input file to a API instance
         let api: API
@@ -69,30 +69,32 @@ public final class SwiftyRestAPI {
         //Creates files with the corresponding generator
         switch generatorChoice {
         case requestrApiGenerator:
+          print("Using Requestr Generator ...".foreground.Green.style.Bold)
           try createEndpointsFile(api: api)
           try createServiceFiles(api: api)
         case alamofireApiGenerator:
+          print("Using Alamofire Generator ...".foreground.Green.style.Bold)
           try createEndpointsFile(api: api)
           try createAlamofireServiceFiles(api: api)
         default: return
         }
 
-        print("Finished!".foreground.Red)
+        print("Finished!".foreground.Green.style.Bold)
     }
 
     func chooseModelGenerator() throws {
         print("Model Generator".foreground.Yellow.style.Bold)
 
         //Model generator options
-        let requestrModelGenerator = "Requestr Model Generator".foreground.Red.style.Underline
-        let codableModelGenerator = "Codable Model Generator".foreground.Red.style.Underline
+        let requestrModelGenerator = "Requestr Model Generator".foreground.Red.style.Bold
+        let codableModelGenerator = "Codable Model Generator".foreground.Red.style.Bold
 
         //Asks for a model generator
-        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow, choices: requestrModelGenerator, codableModelGenerator)
+        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrModelGenerator, codableModelGenerator)
 
         //Asks for the input file name and the model name
-        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow)
-        let modelName = ask("What is this model's name?".foreground.Yellow)
+        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow.style.Bold)
+        let modelName = ask("What is this model's name?".foreground.Yellow.style.Bold)
 
         switch generatorChoice {
         case requestrModelGenerator:
@@ -106,9 +108,10 @@ public final class SwiftyRestAPI {
     }
 
     func chooseInputType() -> InputTypes {
-      let postmanChoice = "Postman API json file".foreground.Red.style.Underline
-      let swiftyRestAPIChoice = "Swifty API json file".foreground.Red.style.Underline
-      let inputChoice = choose("Ok! What is the input API doc file type?\n".foreground.Yellow, choices: postmanChoice, swiftyRestAPIChoice)
+      print("\nInput Types".foreground.Yellow.style.Bold)
+      let postmanChoice = "Postman API json file".foreground.Red.style.Bold
+      let swiftyRestAPIChoice = "Swifty API json file".foreground.Red.style.Bold
+      let inputChoice = choose("Ok! What is the input API doc file type?\n".foreground.Yellow.style.Bold, choices: postmanChoice, swiftyRestAPIChoice)
 
       switch inputChoice {
       case postmanChoice:
@@ -151,7 +154,7 @@ public final class SwiftyRestAPI {
     }
 
      func createServiceFiles(api: API) throws {
-        let apiGenerator = AlamofireAPIGenerator(api: api)
+        let apiGenerator = RequestrAPIGenerator(api: api)
         let serviceTexts = apiGenerator.makeServiceFiles()
 
         var outputFileNames: [String] = []
