@@ -47,10 +47,10 @@ final class CodableModelGenerator: ModelGenerator {
 extension CodableModelGenerator {
 
     // MARK: Helper's
-    
+
     private func makeParameters() -> [Parameter] {
         var parameters: [Parameter] = []
-        for (key,value) in json {
+        for (key, value) in json {
           let type = findType(value: value)
           let parameter = Parameter(name: key, type: type, value: value)
           parameters.append(parameter)

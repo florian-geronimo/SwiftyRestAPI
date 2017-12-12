@@ -1,0 +1,20 @@
+disabled_rules:
+- control_statement
+- line_length
+- trailing_whitespace
+- force_cast
+- class_delegate_protocol
+- weak_delegate
+
+opt_in_rules:
+- empty_count
+
+excluded:
+- .build
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+file_length:
+  warning: 500
+  error: 1000

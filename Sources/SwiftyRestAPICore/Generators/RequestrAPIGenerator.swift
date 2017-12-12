@@ -8,7 +8,7 @@
 import Foundation
 
 class RequestrAPIGenerator: APIGenerator {
-    
+
     internal let api: API
 
     lazy var basePath: String = {
@@ -24,14 +24,14 @@ class RequestrAPIGenerator: APIGenerator {
     required init(api: API) {
         self.api = api
     }
-    
+
 }
 
 // MARK: - Endpoints File
 
 extension RequestrAPIGenerator {
 
-    // MARK:  Helper's
+    // MARK: Helper's
 
     private func makeBaseURL(with baseURL: String) -> String {
         return """
