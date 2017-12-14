@@ -56,8 +56,16 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
 ##### These next steps are crucial in order to get it to Beta level:
 
 - Accept more input types (Postman, Paw, APIBlueprint, etc.)
+  - [x] Postman
+  - [ ] Paw
+  - [ ] APIBlueprint
 - Be able to generate more output types (Currently only supports Swift/Requestr generated code)
+  - [x] Alamofire
+  - [x] Swift codable models
 - Be able to accept more Json Types. Nested dictionaries, arrays, and optionals, for example.
+  - [x] Arrays
+  - [ ] Nested dictionaries
+  - [ ] Optionals
 
 ### Examples
 
@@ -133,7 +141,7 @@ API input examples:
 ```
 
 API output example:
-```
+``` swift
 //
 // Endpoints.swift
 // SwiftyRestAPI
@@ -173,7 +181,7 @@ enum Endpoint {
 
 ```
 
-```
+``` swift
 //
 // UsersService.swift
 // SwiftyRestAPI
@@ -223,7 +231,7 @@ extension UsersApiService: UsersService {
 }
 ```
 
-```
+``` swift
 // PlacesService.swift
 // SwiftyRestAPI
 //
@@ -294,7 +302,7 @@ Model input example:
 ```
 
 Model output example with Requestr option:
-```
+```swift
 //
 // Person.swift
 // SwiftyRestAPI
@@ -330,7 +338,7 @@ struct Person: JSONDeserializable {
 ```
 
 Model output example with Codable option:
-```
+```swift
 //
 // Person.swift
 // SwiftyRestAPI
