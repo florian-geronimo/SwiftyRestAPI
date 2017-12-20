@@ -98,7 +98,7 @@ public final class SwiftyRestAPI {
 
         switch generatorChoice {
         case requestrModelGenerator:
-           try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: RequestrModelGenerator.self)
+         try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: RequestrModelGenerator.self)
         case codableModelGenerator:
           try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: CodableModelGenerator.self)
         default: return
@@ -133,6 +133,7 @@ public final class SwiftyRestAPI {
     }
 
     func createModelFile<T: ModelGenerator>(inputFileName: String, modelName: String, generatorType: T.Type) throws {
+      print("Using Model Generator ...".foreground.Green.style.Bold)
       let outputFileName = "\(modelName).swift"
       let inputData = try File(path: inputFileName).read()
       let modelGenerator: ModelGenerator = try T(modelName: modelName, jsonData: inputData)
@@ -140,7 +141,7 @@ public final class SwiftyRestAPI {
       let modelFile = try FileSystem().createFile(at: outputFileName)
       try modelFile.write(string: modelText)
 
-      print("Created file \(outputFileName)".foreground.Red)
+      print("Created file \(outputFileName)".foreground.Green.style.Bold)
     }
 
      func createEndpointsFile(api: API) throws {
