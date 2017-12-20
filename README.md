@@ -141,7 +141,6 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
           }   
 </details>
 
-
 <details>
   <summary> API output example: </summary>
   <figure>
@@ -317,9 +316,8 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
   </figure>
 </details>
 
-
 <details>
-  <summary> API output example: </summary>
+  <summary> Model Requestr output example: </summary>
   <figure>
     <pre>
       //
@@ -358,7 +356,7 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
 </details>
 
 <details>
-  <summary> API output example: </summary>
+  <summary> Model codable output example: </summary>
   <figure>
     <pre>
       //
