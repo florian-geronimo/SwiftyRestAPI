@@ -1,0 +1,65 @@
+{
+  "categories" : [
+    {
+      "name" : "Users",
+      "endpoints" : [
+        {
+          "urlParameters" : [
+
+          ],
+          "resourceName" : "User",
+          "isResourceArray" : false,
+          "name" : "getUser",
+          "method" : "GET",
+          "relativePath" : "\/users\/1"
+        },
+        {
+          "urlParameters" : [
+
+          ],
+          "resourceName" : "User",
+          "isResourceArray" : false,
+          "name" : "postUser",
+          "method" : "POST",
+          "relativePath" : "\/users\/1"
+        }
+      ]
+    },
+    {
+      "name" : "Places",
+      "endpoints" : [
+        {
+          "urlParameters" : [
+
+          ],
+          "resourceName" : "Place",
+          "isResourceArray" : true,
+          "name" : "getPlaces",
+          "method" : "GET",
+          "relativePath" : "\/places"
+        },
+        {
+          "urlParameters" : [
+
+          ],
+          "resourceName" : "Place",
+          "isResourceArray" : false,
+          "name" : "postPlace",
+          "method" : "POST",
+          "relativePath" : "\/places\/1"
+        },
+        {
+          "urlParameters" : [
+
+          ],
+          "resourceName" : "Place",
+          "isResourceArray" : false,
+          "name" : "putPlace",
+          "method" : "PUT",
+          "relativePath" : "\/places\/1"
+        }
+      ]
+    }
+  ],
+  "basePath" : "http:\/\/www.icalialabs.com\/"
+}
