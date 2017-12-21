@@ -684,7 +684,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="SwiftyMac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -707,11 +707,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="SwiftyMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="553"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7sC-te-cqe">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
+                            </visualEffectView>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-tP-btG">
-                                <rect key="frame" x="123" y="429" width="205" height="26"/>
+                                <rect key="frame" x="23" y="326" width="205" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2eU-TM-E5x"/>
                                 </constraints>
@@ -725,7 +728,7 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rwg-5P-ATr">
-                                <rect key="frame" x="373" y="429" width="205" height="26"/>
+                                <rect key="frame" x="273" y="326" width="205" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Asl-PB-UsP"/>
                                 </constraints>
@@ -738,11 +741,11 @@
                                     <action selector="featureTypeSelectDidChange:" target="XfG-lQ-9wD" id="GJ7-jE-gXH"/>
                                 </connections>
                             </popUpButton>
-                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-2z-R4L">
-                                <rect key="frame" x="250" y="305" width="200" height="102"/>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-2z-R4L">
+                                <rect key="frame" x="150" y="194" width="200" height="110"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uHz-kO-Qwb">
-                                        <rect key="frame" x="-6" y="45" width="212" height="61"/>
+                                        <rect key="frame" x="-6" y="53" width="212" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="h7e-CE-obi"/>
                                             <constraint firstAttribute="height" constant="50" id="ipP-TK-vd8"/>
@@ -756,7 +759,7 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uyC-2W-rmW">
-                                        <rect key="frame" x="52" y="26" width="96" height="22"/>
+                                        <rect key="frame" x="52" y="30" width="96" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File Name" drawsBackground="YES" id="tUr-vw-evM">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -784,25 +787,54 @@
                                 </customSpacing>
                             </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pbz-3R-DoW">
-                                <rect key="frame" x="258" y="478" width="185" height="50"/>
+                                <rect key="frame" x="160" y="375" width="180" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wtO-q2-l3A"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SwiftyMac" id="zEG-ng-qaa">
-                                    <font key="font" size="40" name=".AppleSystemUIFont"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <font key="font" size="40" name=".AppleSystemUIFontLight"/>
+                                    <color key="textColor" red="0.81176470590000005" green="0.20392156859999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f0C-ii-NfD">
+                                <rect key="frame" x="144" y="18" width="212" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Iek-1g-VGn"/>
+                                    <constraint firstAttribute="height" constant="50" id="SX3-lH-nPO"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Create!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4bR-hu-BRY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didSelectChooseInputFile:" target="XfG-lQ-9wD" id="iUa-fK-nBy"/>
+                                </connections>
+                            </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="llb-xS-74V">
+                                <rect key="frame" x="367" y="25" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="FzD-zb-hIa"/>
+                                    <constraint firstAttribute="width" constant="50" id="anV-pf-ptQ"/>
+                                </constraints>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="3ha-2z-R4L" firstAttribute="top" secondItem="Rwg-5P-ATr" secondAttribute="bottom" constant="25" id="46U-MT-V1D"/>
+                            <constraint firstAttribute="trailing" secondItem="7sC-te-cqe" secondAttribute="trailing" id="6mk-qn-gpa"/>
+                            <constraint firstItem="7sC-te-cqe" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="AJT-kx-Okn"/>
                             <constraint firstItem="3ha-2z-R4L" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Icj-g5-NvB"/>
+                            <constraint firstItem="llb-xS-74V" firstAttribute="centerY" secondItem="f0C-ii-NfD" secondAttribute="centerY" id="JeT-BM-E32"/>
+                            <constraint firstItem="f0C-ii-NfD" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Nvm-ZX-StK"/>
+                            <constraint firstAttribute="bottom" secondItem="f0C-ii-NfD" secondAttribute="bottom" constant="25" id="Pep-Xm-bMl"/>
                             <constraint firstItem="Rwg-5P-ATr" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="125" id="Pms-ny-Ke6"/>
                             <constraint firstItem="zPV-tP-btG" firstAttribute="top" secondItem="Pbz-3R-DoW" secondAttribute="bottom" constant="25" id="SAU-s8-A6b"/>
+                            <constraint firstAttribute="bottom" secondItem="7sC-te-cqe" secondAttribute="bottom" id="Tsa-QV-N6b"/>
                             <constraint firstItem="Rwg-5P-ATr" firstAttribute="bottom" secondItem="zPV-tP-btG" secondAttribute="bottom" id="aZ7-Hh-DTa"/>
+                            <constraint firstItem="7sC-te-cqe" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="cSq-GM-43F"/>
                             <constraint firstItem="Rwg-5P-ATr" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="trailing" constant="50" id="djD-bO-sJ3"/>
                             <constraint firstItem="Pbz-3R-DoW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="fEI-hB-VGF"/>
+                            <constraint firstItem="llb-xS-74V" firstAttribute="leading" secondItem="f0C-ii-NfD" secondAttribute="trailing" constant="17" id="fi1-bO-ngy"/>
                             <constraint firstItem="Pbz-3R-DoW" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="25" id="haz-Ky-ISd"/>
                             <constraint firstItem="zPV-tP-btG" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="-125" id="xAb-Vo-8ch"/>
                         </constraints>
@@ -814,11 +846,12 @@
                         <outlet property="inputFileButton" destination="uHz-kO-Qwb" id="4be-b7-Kp4"/>
                         <outlet property="mainStackView" destination="3ha-2z-R4L" id="ism-TP-TyK"/>
                         <outlet property="modelNameTextField" destination="rFi-8j-eWR" id="gFh-fg-bMx"/>
+                        <outlet property="visualEffectView" destination="7sC-te-cqe" id="A1i-K8-TEI"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="796.5"/>
+            <point key="canvasLocation" x="185" y="796"/>
         </scene>
     </scenes>
 </document>

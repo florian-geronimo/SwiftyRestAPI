@@ -35,6 +35,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var fileNameTextField: NSTextField!
     @IBOutlet weak var modelNameTextField: NSTextField!
 
+    @IBOutlet weak var visualEffectView: NSVisualEffectView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -45,6 +47,7 @@ class ViewController: NSViewController {
     func setup() {
         setupFeaturePopUpButton()
         updateFeatureTypePopUpButton()
+        setupVisualEffectBackgroundView()
     }
 
     func setupFeaturePopUpButton() {
@@ -56,7 +59,17 @@ class ViewController: NSViewController {
         featureTypeSelect.addItems(withTitles: selectedFeature.featureTypes.map { $0.rawValue })
     }
 
-    // MARK: - Action's
+    func setupVisualEffectBackgroundView() {
+        visualEffectView.state = .active
+        visualEffectView.material = .mediumLight
+        // visualEffectView.blendingMode = .behindWindow
+    }
+    
+}
+
+// MARK: - Actions
+
+extension ViewController {
 
     @IBAction func featureSelectDidChange(_ sender: NSPopUpButton) {
         guard let selectedTitle = sender.titleOfSelectedItem, let selectedFeature = Feature(rawValue: selectedTitle) else {
@@ -72,7 +85,51 @@ class ViewController: NSViewController {
     }
 
     @IBAction func didSelectChooseInputFile(_ sender: Any) {
-        
+        openInputFile()
     }
-    
+
+}
+
+// MARK: - Document Handling
+
+extension ViewController {
+
+    func openInputFile() {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.allowedFileTypes = ["swift"]
+
+        guard let window = view.window else {
+            return
+        }
+
+        openPanel.beginSheetModal(for: window) { (response) in
+            guard response == NSApplication.ModalResponse.OK else {
+                return
+            }
+
+            let file = openPanel.url
+            print(file)
+        }
+    }
+
+//
+//    func saveDocument(_ sender: AnyObject?) {
+//        guard editedImage != nil else {
+//            return
+//        }
+//
+//        let savePanel = NSSavePanel()
+//        savePanel.allowedFileTypes = ["jpg"]
+//        savePanel.beginSheetModal(for: view.window!) { (result: Int) -> Void in
+//            guard result == NSModalResponseOK else{
+//                return
+//            }
+//
+//            let fileURL = savePanel.url
+//            _ = self.saveEditedImageToURL(fileURL)
+//        }
+//    }
+
 }
