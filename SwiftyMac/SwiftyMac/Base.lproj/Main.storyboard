@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +675,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SwiftyMac" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -688,7 +690,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-			<connections>
+                        <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
@@ -703,15 +705,120 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="SwiftyMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="553"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zPV-tP-btG">
+                                <rect key="frame" x="123" y="429" width="205" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2eU-TM-E5x"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Cfu-jG-Wp8">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Lyw-B8-zRJ"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="featureSelectDidChange:" target="XfG-lQ-9wD" id="ao3-c3-cIY"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rwg-5P-ATr">
+                                <rect key="frame" x="373" y="429" width="205" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Asl-PB-UsP"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Kr6-55-qIL">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="7At-6L-jAk"/>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="featureTypeSelectDidChange:" target="XfG-lQ-9wD" id="GJ7-jE-gXH"/>
+                                </connections>
+                            </popUpButton>
+                            <stackView distribution="fillEqually" orientation="vertical" alignment="centerX" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-2z-R4L">
+                                <rect key="frame" x="250" y="305" width="200" height="102"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uHz-kO-Qwb">
+                                        <rect key="frame" x="-6" y="45" width="212" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="h7e-CE-obi"/>
+                                            <constraint firstAttribute="height" constant="50" id="ipP-TK-vd8"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Choose input file" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vAv-5v-Dix">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didSelectChooseInputFile:" target="XfG-lQ-9wD" id="uwz-Am-yE1"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uyC-2W-rmW">
+                                        <rect key="frame" x="52" y="26" width="96" height="22"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File Name" drawsBackground="YES" id="tUr-vw-evM">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFi-8j-eWR">
+                                        <rect key="frame" x="52" y="0.0" width="96" height="22"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Model Name" drawsBackground="YES" id="VY2-qX-Trk">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pbz-3R-DoW">
+                                <rect key="frame" x="258" y="478" width="185" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wtO-q2-l3A"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SwiftyMac" id="zEG-ng-qaa">
+                                    <font key="font" size="40" name=".AppleSystemUIFont"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3ha-2z-R4L" firstAttribute="top" secondItem="Rwg-5P-ATr" secondAttribute="bottom" constant="25" id="46U-MT-V1D"/>
+                            <constraint firstItem="3ha-2z-R4L" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Icj-g5-NvB"/>
+                            <constraint firstItem="Rwg-5P-ATr" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="125" id="Pms-ny-Ke6"/>
+                            <constraint firstItem="zPV-tP-btG" firstAttribute="top" secondItem="Pbz-3R-DoW" secondAttribute="bottom" constant="25" id="SAU-s8-A6b"/>
+                            <constraint firstItem="Rwg-5P-ATr" firstAttribute="bottom" secondItem="zPV-tP-btG" secondAttribute="bottom" id="aZ7-Hh-DTa"/>
+                            <constraint firstItem="Rwg-5P-ATr" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="trailing" constant="50" id="djD-bO-sJ3"/>
+                            <constraint firstItem="Pbz-3R-DoW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="fEI-hB-VGF"/>
+                            <constraint firstItem="Pbz-3R-DoW" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="25" id="haz-Ky-ISd"/>
+                            <constraint firstItem="zPV-tP-btG" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="-125" id="xAb-Vo-8ch"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="featureSelect" destination="zPV-tP-btG" id="5ZP-NZ-JoR"/>
+                        <outlet property="featureTypeSelect" destination="Rwg-5P-ATr" id="QTR-bU-HCU"/>
+                        <outlet property="fileNameTextField" destination="uyC-2W-rmW" id="bbq-Rp-MpW"/>
+                        <outlet property="inputFileButton" destination="uHz-kO-Qwb" id="4be-b7-Kp4"/>
+                        <outlet property="mainStackView" destination="3ha-2z-R4L" id="ism-TP-TyK"/>
+                        <outlet property="modelNameTextField" destination="rFi-8j-eWR" id="gFh-fg-bMx"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="185" y="796.5"/>
         </scene>
     </scenes>
 </document>

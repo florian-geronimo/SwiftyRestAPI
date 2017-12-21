@@ -13,6 +13,8 @@
 		068D7E991FEC614B005D41D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 068D7E971FEC614B005D41D0 /* Main.storyboard */; };
 		068D7EA51FEC614B005D41D0 /* SwiftyMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D7EA41FEC614B005D41D0 /* SwiftyMacTests.swift */; };
 		068D7EB01FEC614B005D41D0 /* SwiftyMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D7EAF1FEC614B005D41D0 /* SwiftyMacUITests.swift */; };
+		06DFB68B1FEC6BED00E1D6A1 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */; };
+		06DFB68D1FEC6C0500E1D6A1 /* FeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		068D7EAB1FEC614B005D41D0 /* SwiftyMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		068D7EAF1FEC614B005D41D0 /* SwiftyMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMacUITests.swift; sourceTree = "<group>"; };
 		068D7EB11FEC614B005D41D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 			children = (
 				068D7E911FEC614B005D41D0 /* AppDelegate.swift */,
 				068D7E931FEC614B005D41D0 /* ViewController.swift */,
+				06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */,
+				06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */,
 				068D7E951FEC614B005D41D0 /* Assets.xcassets */,
 				068D7E971FEC614B005D41D0 /* Main.storyboard */,
 				068D7E9A1FEC614B005D41D0 /* Info.plist */,
@@ -257,7 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06DFB68B1FEC6BED00E1D6A1 /* Feature.swift in Sources */,
 				068D7E941FEC614B005D41D0 /* ViewController.swift in Sources */,
+				06DFB68D1FEC6C0500E1D6A1 /* FeatureType.swift in Sources */,
 				068D7E921FEC614B005D41D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
