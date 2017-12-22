@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '501317414F697C523D7968C451629547'
-               BlueprintName = 'SwiftyRestAPI'
+               BlueprintIdentifier = '637A53517CBD366712FC08A6D7EC9B82'
+               BlueprintName = 'Swiftline'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftyRestAPI.framework'>
+               BuildableName = 'Swiftline.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

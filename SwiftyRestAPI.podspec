@@ -27,8 +27,10 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/danlozano/SwiftyRestAPI.git', :tag => s.version.to_s }
 
   s.platform = :osx
+  s.osx.deployment_target  = '10.10'
 
   s.source_files = 'Sources/SwiftyRestAPICore/**/*'
   s.dependency 'Files', '~> 2.0'
+  s.dependency 'Swiftline', '0.5.0'
 
 end
