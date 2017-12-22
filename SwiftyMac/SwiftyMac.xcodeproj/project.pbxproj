@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0660CBA31FEDCA0B00BFAE57 /* InputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660CBA21FEDCA0B00BFAE57 /* InputType.swift */; };
 		068D7E921FEC614B005D41D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D7E911FEC614B005D41D0 /* AppDelegate.swift */; };
 		068D7E941FEC614B005D41D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D7E931FEC614B005D41D0 /* ViewController.swift */; };
 		068D7E961FEC614B005D41D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 068D7E951FEC614B005D41D0 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0660CBA21FEDCA0B00BFAE57 /* InputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputType.swift; sourceTree = "<group>"; };
 		068D7E8E1FEC614B005D41D0 /* SwiftyMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		068D7E911FEC614B005D41D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		068D7E931FEC614B005D41D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				068D7E931FEC614B005D41D0 /* ViewController.swift */,
 				06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */,
 				06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */,
+				0660CBA21FEDCA0B00BFAE57 /* InputType.swift */,
 				068D7E951FEC614B005D41D0 /* Assets.xcassets */,
 				068D7E971FEC614B005D41D0 /* Main.storyboard */,
 				068D7E9A1FEC614B005D41D0 /* Info.plist */,
@@ -469,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0660CBA31FEDCA0B00BFAE57 /* InputType.swift in Sources */,
 				06DFB68B1FEC6BED00E1D6A1 /* Feature.swift in Sources */,
 				068D7E941FEC614B005D41D0 /* ViewController.swift in Sources */,
 				06DFB68D1FEC6C0500E1D6A1 /* FeatureType.swift in Sources */,

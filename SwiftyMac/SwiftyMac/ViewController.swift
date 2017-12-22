@@ -17,10 +17,13 @@ class ViewController: NSViewController {
 
     var selectedFeature: Feature = .modelGenerator {
         didSet {
+			updateFieldTitles()
             updateFieldsVisibility()
             updateFeatureTypePopUpButton()
         }
     }
+
+	var selectedFeatureType: FeatureType = Feature.modelGenerator.featureTypes.first!
 
     var selectedInputFile: URL? {
         didSet {
@@ -37,9 +40,13 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBOutlet weak var featureSelect: NSPopUpButton!
-    @IBOutlet weak var featureTypeSelect: NSPopUpButton!
-
+	@IBOutlet weak var featureSelectTitleLabel: NSTextField!
+	@IBOutlet weak var featureSelect: NSPopUpButton!
+	@IBOutlet weak var featureTypeSelectTitleLabel: NSTextField!
+	@IBOutlet weak var featureTypeSelect: NSPopUpButton!
+	@IBOutlet weak var inputTypeSelectTitleLabel: NSTextField!
+	@IBOutlet weak var inputTypeSelect: NSPopUpButton!
+	
     @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var inputFileButton: NSButton!
     @IBOutlet weak var inputFileLabel: NSTextField!
@@ -59,21 +66,23 @@ class ViewController: NSViewController {
     // MARK: - Setup
 
     func setup() {
+		setupPopUpButtons()
         setupVisualEffectBackgroundView()
-        setupFeaturePopUpButton()
 
+		updateFieldTitles()
         updateFieldsVisibility()
         updateFeatureTypePopUpButton()
     }
 
     func setupVisualEffectBackgroundView() {
         visualEffectView.state = .active
-        visualEffectView.material = .mediumLight
-        // visualEffectView.blendingMode = .behindWindow
+        visualEffectView.material = .ultraDark
+        visualEffectView.blendingMode = .behindWindow
     }
 
-    func setupFeaturePopUpButton() {
+    func setupPopUpButtons() {
         featureSelect.addItems(withTitles: Feature.allFeatures.map { $0.rawValue })
+		inputTypeSelect.addItems(withTitles: InputType.allValues.map { $0.rawValue })
     }
 
     func updateFeatureTypePopUpButton() {
@@ -81,9 +90,21 @@ class ViewController: NSViewController {
         featureTypeSelect.addItems(withTitles: selectedFeature.featureTypes.map { $0.rawValue })
     }
 
+	func updateFieldTitles() {
+		switch selectedFeature {
+		case .apiGenerator:
+			featureTypeSelectTitleLabel.stringValue = "Which API generator do you want to use?"
+		case .modelGenerator:
+			featureTypeSelectTitleLabel.stringValue = "Which model generator do you want to use?"
+		}
+	}
+
     func updateFieldsVisibility() {
         inputFileLabel.isHidden = selectedInputFile == nil
         modelNameTextField.isHidden = selectedFeature != .modelGenerator
+
+		inputTypeSelectTitleLabel.isHidden = !(selectedFeature == .apiGenerator)
+		inputTypeSelect.isHidden = !(selectedFeature == .apiGenerator)
 
         createLabel.isHidden = true
         progressIndicator.isHidden = true
