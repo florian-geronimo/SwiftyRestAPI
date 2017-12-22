@@ -1,0 +1,6 @@
+framework module SwiftyRestAPI {
+  umbrella header "SwiftyRestAPI-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -16,6 +16,9 @@
 		06DFB68B1FEC6BED00E1D6A1 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */; };
 		06DFB68D1FEC6C0500E1D6A1 /* FeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */; };
 		06DFB68F1FEC6F7E00E1D6A1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DFB68E1FEC6F7E00E1D6A1 /* MainWindowController.swift */; };
+		C281292A33A4E72590B6C87A /* Pods_SwiftyMacUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82CCC123B35468B5D7F83AC /* Pods_SwiftyMacUITests.framework */; };
+		C5EBDC101B22298B880C23C4 /* Pods_SwiftyMacTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104409E09A0E3DA1DF1FF1F5 /* Pods_SwiftyMacTests.framework */; };
+		FC925D4E1F05CD258B24BCBC /* Pods_SwiftyMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA08C1095BE4519C5A83AF9 /* Pods_SwiftyMac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,15 @@
 		06DFB68A1FEC6BED00E1D6A1 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		06DFB68C1FEC6C0500E1D6A1 /* FeatureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureType.swift; sourceTree = "<group>"; };
 		06DFB68E1FEC6F7E00E1D6A1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		104409E09A0E3DA1DF1FF1F5 /* Pods_SwiftyMacTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyMacTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A674C16E6642AB4925ECB97 /* Pods-SwiftyMacTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMacTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMacTests/Pods-SwiftyMacTests.release.xcconfig"; sourceTree = "<group>"; };
+		2202AEE55DAE8D6B75E704B3 /* Pods-SwiftyMacUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMacUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMacUITests/Pods-SwiftyMacUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3F8B455118558C0EAC5CDD77 /* Pods-SwiftyMac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMac/Pods-SwiftyMac.debug.xcconfig"; sourceTree = "<group>"; };
+		4E318819425DA80EDC7B5C6C /* Pods-SwiftyMacTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMacTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMacTests/Pods-SwiftyMacTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C457CA5F78C2B24F0B97CB8 /* Pods-SwiftyMac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMac.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMac/Pods-SwiftyMac.release.xcconfig"; sourceTree = "<group>"; };
+		7FA08C1095BE4519C5A83AF9 /* Pods_SwiftyMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDBF55A8CACC7233E10BBC6E /* Pods-SwiftyMacUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyMacUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyMacUITests/Pods-SwiftyMacUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D82CCC123B35468B5D7F83AC /* Pods_SwiftyMacUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyMacUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC925D4E1F05CD258B24BCBC /* Pods_SwiftyMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5EBDC101B22298B880C23C4 /* Pods_SwiftyMacTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C281292A33A4E72590B6C87A /* Pods_SwiftyMacUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +101,8 @@
 				068D7EA31FEC614B005D41D0 /* SwiftyMacTests */,
 				068D7EAE1FEC614B005D41D0 /* SwiftyMacUITests */,
 				068D7E8F1FEC614B005D41D0 /* Products */,
+				6706ADA85E1DFA3843C4FCD0 /* Pods */,
+				EA44CF77C9EAF067D89DB016 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +150,29 @@
 			path = SwiftyMacUITests;
 			sourceTree = "<group>";
 		};
+		6706ADA85E1DFA3843C4FCD0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F8B455118558C0EAC5CDD77 /* Pods-SwiftyMac.debug.xcconfig */,
+				5C457CA5F78C2B24F0B97CB8 /* Pods-SwiftyMac.release.xcconfig */,
+				4E318819425DA80EDC7B5C6C /* Pods-SwiftyMacTests.debug.xcconfig */,
+				1A674C16E6642AB4925ECB97 /* Pods-SwiftyMacTests.release.xcconfig */,
+				2202AEE55DAE8D6B75E704B3 /* Pods-SwiftyMacUITests.debug.xcconfig */,
+				BDBF55A8CACC7233E10BBC6E /* Pods-SwiftyMacUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA44CF77C9EAF067D89DB016 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FA08C1095BE4519C5A83AF9 /* Pods_SwiftyMac.framework */,
+				104409E09A0E3DA1DF1FF1F5 /* Pods_SwiftyMacTests.framework */,
+				D82CCC123B35468B5D7F83AC /* Pods_SwiftyMacUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,9 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 068D7EB41FEC614B005D41D0 /* Build configuration list for PBXNativeTarget "SwiftyMac" */;
 			buildPhases = (
+				6C6A4055C530C2A46E756A43 /* [CP] Check Pods Manifest.lock */,
 				068D7E8A1FEC614B005D41D0 /* Sources */,
 				068D7E8B1FEC614B005D41D0 /* Frameworks */,
 				068D7E8C1FEC614B005D41D0 /* Resources */,
+				BCA4840D89C8CC81041B1E3E /* [CP] Embed Pods Frameworks */,
+				AE8CCDD140C4B553B0BBC363 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 068D7EB71FEC614B005D41D0 /* Build configuration list for PBXNativeTarget "SwiftyMacTests" */;
 			buildPhases = (
+				8004B29EDAC7F00C765B5BC1 /* [CP] Check Pods Manifest.lock */,
 				068D7E9C1FEC614B005D41D0 /* Sources */,
 				068D7E9D1FEC614B005D41D0 /* Frameworks */,
 				068D7E9E1FEC614B005D41D0 /* Resources */,
+				156E043BEDA7761CD96827F6 /* [CP] Embed Pods Frameworks */,
+				810E18E3ED8203B631770284 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,9 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 068D7EBA1FEC614B005D41D0 /* Build configuration list for PBXNativeTarget "SwiftyMacUITests" */;
 			buildPhases = (
+				7F21BDCD34AAFE70B5F7A976 /* [CP] Check Pods Manifest.lock */,
 				068D7EA71FEC614B005D41D0 /* Sources */,
 				068D7EA81FEC614B005D41D0 /* Frameworks */,
 				068D7EA91FEC614B005D41D0 /* Resources */,
+				466DECC06E9267C0B8156A76 /* [CP] Embed Pods Frameworks */,
+				D27384406660AF87DD472209 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,6 +309,158 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		156E043BEDA7761CD96827F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMacTests/Pods-SwiftyMacTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		466DECC06E9267C0B8156A76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMacUITests/Pods-SwiftyMacUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C6A4055C530C2A46E756A43 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyMac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F21BDCD34AAFE70B5F7A976 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyMacUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8004B29EDAC7F00C765B5BC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyMacTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		810E18E3ED8203B631770284 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMacTests/Pods-SwiftyMacTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE8CCDD140C4B553B0BBC363 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMac/Pods-SwiftyMac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCA4840D89C8CC81041B1E3E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMac/Pods-SwiftyMac-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Files/Files.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyRestAPI/SwiftyRestAPI.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Files.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRestAPI.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMac/Pods-SwiftyMac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D27384406660AF87DD472209 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyMacUITests/Pods-SwiftyMacUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		068D7E8A1FEC614B005D41D0 /* Sources */ = {
@@ -425,6 +626,7 @@
 		};
 		068D7EB51FEC614B005D41D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F8B455118558C0EAC5CDD77 /* Pods-SwiftyMac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwiftyMac/SwiftyMac.entitlements;
@@ -441,6 +643,7 @@
 		};
 		068D7EB61FEC614B005D41D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C457CA5F78C2B24F0B97CB8 /* Pods-SwiftyMac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwiftyMac/SwiftyMac.entitlements;
@@ -457,6 +660,7 @@
 		};
 		068D7EB81FEC614B005D41D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E318819425DA80EDC7B5C6C /* Pods-SwiftyMacTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -474,6 +678,7 @@
 		};
 		068D7EB91FEC614B005D41D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A674C16E6642AB4925ECB97 /* Pods-SwiftyMacTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +696,7 @@
 		};
 		068D7EBB1FEC614B005D41D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2202AEE55DAE8D6B75E704B3 /* Pods-SwiftyMacUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +713,7 @@
 		};
 		068D7EBC1FEC614B005D41D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDBF55A8CACC7233E10BBC6E /* Pods-SwiftyMacUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

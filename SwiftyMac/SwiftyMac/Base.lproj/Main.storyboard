@@ -837,7 +837,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SwiftyMac" id="zEG-ng-qaa">
                                     <font key="font" size="40" name=".AppleSystemUIFontLight"/>
-                                    <color key="textColor" red="0.81176470590000005" green="0.20392156859999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>

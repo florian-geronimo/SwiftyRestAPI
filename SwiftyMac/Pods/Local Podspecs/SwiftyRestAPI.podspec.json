@@ -1,0 +1,27 @@
+{
+  "name": "SwiftyRestAPI",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftyRestAPI.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/danlozano/SwiftyRestAPI",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "danlozano": "danlozano@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/danlozano/SwiftyRestAPI.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "osx": null
+  },
+  "source_files": "Sources/SwiftyRestAPICore/**/*",
+  "dependencies": {
+    "Files": [
+      "~> 2.0"
+    ]
+  }
+}
