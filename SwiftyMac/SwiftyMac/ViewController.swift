@@ -239,7 +239,7 @@ extension ViewController {
 	}
 
 	func runModelGenerator(with input: InputType) throws {
-		guard let inputFilePath = selectedInputFile?.absoluteString else {
+		guard let inputFilePath = selectedInputFile?.relativePath else {
 			print("Invalid input file path. Aborting")
 			return
 		}
@@ -265,7 +265,7 @@ extension ViewController {
 		let modelFile = try FileSystem().createFile(at: outputFileName)
 		try modelFile.write(string: modelText)
 
-		// print("Created file \(outputFileName)".foreground.Green.style.Bold)
+		print("Created file \(modelFile.path)")
 	}
 
 	// MARK: Helper's
