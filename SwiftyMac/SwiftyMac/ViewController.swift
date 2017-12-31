@@ -25,6 +25,8 @@ class ViewController: NSViewController {
 
 	var selectedFeatureType: FeatureType = Feature.modelGenerator.featureTypes.first!
 
+	var selectedInputType: InputType = .postman
+
     var selectedInputFile: URL? {
         didSet {
             if let selectedInputFile = selectedInputFile {
@@ -47,7 +49,6 @@ class ViewController: NSViewController {
 	@IBOutlet weak var inputTypeSelectTitleLabel: NSTextField!
 	@IBOutlet weak var inputTypeSelect: NSPopUpButton!
 	
-    @IBOutlet weak var mainStackView: NSStackView!
     @IBOutlet weak var inputFileButton: NSButton!
     @IBOutlet weak var inputFileLabel: NSTextField!
     @IBOutlet weak var fileNameTextField: NSTextField!
@@ -101,7 +102,7 @@ class ViewController: NSViewController {
 
     func updateFieldsVisibility() {
         inputFileLabel.isHidden = selectedInputFile == nil
-        modelNameTextField.isHidden = selectedFeature != .modelGenerator
+        modelNameTextField.isHidden = !(selectedFeature == .modelGenerator)
 
 		inputTypeSelectTitleLabel.isHidden = !(selectedFeature == .apiGenerator)
 		inputTypeSelect.isHidden = !(selectedFeature == .apiGenerator)
@@ -122,11 +123,24 @@ extension ViewController {
         }
 
         self.selectedFeature = selectedFeature
+		self.selectedFeatureType = selectedFeature.featureTypes.first!
     }
 
     @IBAction func featureTypeSelectDidChange(_ sender: NSPopUpButton) {
+		guard let selectedTitle = sender.titleOfSelectedItem, let selectedFeatureType = FeatureType(rawValue: selectedTitle) else {
+			return
+		}
 
+		self.selectedFeatureType = selectedFeatureType
     }
+
+	@IBAction func inputTypeSelectDidChange(_ sender: NSPopUpButton) {
+		guard let selectedTitle = sender.titleOfSelectedItem, let selectedInputType = InputType(rawValue: selectedTitle) else {
+			return
+		}
+
+		self.selectedInputType = selectedInputType
+	}
 
     @IBAction func didSelectChooseInputFile(_ sender: Any) {
         presentOpenPanel { (url) in
@@ -138,7 +152,10 @@ extension ViewController {
     }
 
     @IBAction func didSelectCreate(_ sender: Any) {
-        
+		print("FEATURE: \(selectedFeature)")
+		print("FEATURE TYPE: \(selectedFeatureType)")
+		print("INPUT TYPE: \(selectedInputType)")
+		print("INPUT FILE: \(selectedInputFile)")
     }
 
 }
