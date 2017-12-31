@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RequestrModelGenerator: ModelGenerator {
+public final class RequestrModelGenerator: ModelGenerator {
 
     struct Parameter {
         let name: String
@@ -15,18 +15,18 @@ final class RequestrModelGenerator: ModelGenerator {
         let value: Any
     }
 
-    let modelName: String
+    public let modelName: String
 
     let json: JSONDictionary
 
     lazy var parameters: [Parameter] = makeParameters()
 
-    init(modelName: String, json: JSONDictionary) {
+    public init(modelName: String, json: JSONDictionary) {
         self.modelName = modelName
         self.json = json
     }
 
-    init(modelName: String, jsonData: Data) throws {
+    public init(modelName: String, jsonData: Data) throws {
         guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? JSONDictionary else {
             throw Error.castError
         }
@@ -53,7 +53,7 @@ final class RequestrModelGenerator: ModelGenerator {
 
 extension RequestrModelGenerator {
 
-    func makeModelFile() -> FileText {
+    public func makeModelFile() -> FileText {
         return """
         \(makeHeader(fileName: "\(modelName).swift"))
 

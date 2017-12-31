@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct API: Codable {
+public struct API: Codable {
 
     let basePath: String
 
     let categories: [Category]
 
-    struct Category: Codable {
+    public struct Category: Codable {
         let name: String
         let endpoints: [API.Endpoint]
     }
 
-    struct Endpoint: Codable {
+    public struct Endpoint: Codable {
         let name: String
         let resourceName: String
         let isResourceArray: Bool

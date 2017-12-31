@@ -1,6 +1,6 @@
 import Foundation
 
-indirect enum Type {
+public indirect enum Type {
 
     case string
     case int

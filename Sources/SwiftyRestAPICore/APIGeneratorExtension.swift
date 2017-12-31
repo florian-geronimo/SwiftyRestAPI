@@ -1,6 +1,6 @@
 extension APIGenerator {
  
-    func makeEndpointsFile() -> FileText {
+    public func makeEndpointsFile() -> FileText {
       return """
       \(makeHeader(fileName: "Endpoints.swift"))
 

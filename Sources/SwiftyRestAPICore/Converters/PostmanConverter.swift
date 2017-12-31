@@ -1,10 +1,10 @@
 import Foundation
 
-class PostmanConvertr {
+public class PostmanConvertr {
 
-  static let shared = PostmanConvertr()
+  public static let shared = PostmanConvertr()
 
-  func convert(json: JSONDictionary) -> API {
+  public func convert(json: JSONDictionary) -> API {
      let basePath = getBasePath(json: json)
      let categories = getCategories(json: json)
      return API(basePath: basePath, categories: categories )

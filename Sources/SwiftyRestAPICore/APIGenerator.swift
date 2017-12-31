@@ -8,9 +8,9 @@
 import Foundation
 
 /// Multiline string representing the text data for an output file
-typealias FileText = String
+public typealias FileText = String
 
-protocol APIGenerator {
+public protocol APIGenerator {
     
     var api: API { get }
     

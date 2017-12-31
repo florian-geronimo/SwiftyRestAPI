@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ModelGenerator {
+public extension ModelGenerator {
     
     func findType(value:Any) -> Type {
         let type: Type

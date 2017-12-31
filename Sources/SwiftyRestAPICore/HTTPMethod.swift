@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HTTPMethod: String, Codable {
+public enum HTTPMethod: String, Codable {
 
     case GET
     case POST

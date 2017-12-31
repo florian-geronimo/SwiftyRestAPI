@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias JSONDictionary = [String : Any]
+public typealias JSONDictionary = [String : Any]
 
-protocol ModelGenerator {
+public protocol ModelGenerator {
 
     var modelName: String { get }
 

@@ -7,21 +7,21 @@
 
 import Foundation
 
-class RequestrAPIGenerator: APIGenerator {
+public class RequestrAPIGenerator: APIGenerator {
 
-    internal let api: API
+    public  let api: API
 
-    lazy var basePath: String = {
+    public lazy var basePath: String = {
         return api.basePath
     }()
 
-    lazy var allEndpoints: [API.Endpoint] = {
+    public lazy var allEndpoints: [API.Endpoint] = {
         return api.categories.flatMap { $0.endpoints }
     }()
 
     // MARK: - API Generator
 
-    required init(api: API) {
+    public required init(api: API) {
         self.api = api
     }
 
@@ -79,7 +79,7 @@ extension RequestrAPIGenerator {
 
 extension RequestrAPIGenerator {
 
-    func makeServiceFiles() -> [FileText] {
+    public func makeServiceFiles() -> [FileText] {
         return api.categories.map(makeServiceFile)
     }
 

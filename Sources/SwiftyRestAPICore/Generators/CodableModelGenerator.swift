@@ -1,6 +1,6 @@
 import Foundation
 
-final class CodableModelGenerator: ModelGenerator {
+public final class CodableModelGenerator: ModelGenerator {
 
   struct Parameter {
       let name: String
@@ -8,18 +8,18 @@ final class CodableModelGenerator: ModelGenerator {
       let value: Any
   }
 
-  let modelName: String
+  public let modelName: String
 
   let json: JSONDictionary
 
   lazy var parameters: [Parameter] = makeParameters()
 
-  init(modelName: String, json: JSONDictionary) {
+  public init(modelName: String, json: JSONDictionary) {
       self.modelName = modelName
       self.json = json
   }
 
-  init(modelName: String, jsonData: Data) throws {
+  public init(modelName: String, jsonData: Data) throws {
       guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? JSONDictionary else {
           throw Error.castError
       }
@@ -28,7 +28,7 @@ final class CodableModelGenerator: ModelGenerator {
       self.json = json
   }
 
-  func makeModelFile() -> FileText {
+  public func makeModelFile() -> FileText {
       return """
       \(makeHeader(fileName: "\(modelName).swift"))
 

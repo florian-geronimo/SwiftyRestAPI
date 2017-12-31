@@ -1,20 +1,20 @@
 import Foundation
 
-final class AlamofireAPIGenerator: APIGenerator {
+public final class AlamofireAPIGenerator: APIGenerator {
 
-    let api: API
+    public let api: API
 
-    lazy var basePath: String = {
+    public lazy var basePath: String = {
         return api.basePath
     }()
 
-    lazy var allEndpoints: [API.Endpoint] = {
+    public lazy var allEndpoints: [API.Endpoint] = {
         return api.categories.flatMap { $0.endpoints }
     }()
 
     // MARK: - API Generator
 
-    init(api: API) {
+    public init(api: API) {
         self.api = api
     }
 
@@ -24,7 +24,7 @@ final class AlamofireAPIGenerator: APIGenerator {
 
 extension AlamofireAPIGenerator {
 
-    func makeServiceFiles() -> [FileText] {
+    public func makeServiceFiles() -> [FileText] {
         return api.categories.map(makeServiceFile)
     }
 
