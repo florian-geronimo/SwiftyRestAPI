@@ -68,8 +68,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var fileNameTextField: NSTextField!
     @IBOutlet weak var modelNameTextField: NSTextField!
     @IBOutlet weak var createButton: NSButton!
-    @IBOutlet weak var createLabel: NSTextField!
-    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+	@IBOutlet weak var informationLabel: NSTextField!
 
     @IBOutlet weak var visualEffectView: NSVisualEffectView!
 
@@ -122,9 +121,6 @@ class ViewController: NSViewController {
 
 		inputTypeSelectTitleLabel.isHidden = !(selectedFeature == .apiGenerator)
 		inputTypeSelect.isHidden = !(selectedFeature == .apiGenerator)
-
-        createLabel.isHidden = true
-        progressIndicator.isHidden = true
     }
 
 }
@@ -240,8 +236,9 @@ extension ViewController {
 		let endpointsFile = try FileSystem().createFile(at: outputFilePath)
 		try endpointsFile.write(string: endpointsText)
 
-		print("Created file \(endpointsFile.path)")
-		// TODO: Add to label
+		let message = "Created file \(endpointsFile.path)"
+		print(message)
+		informationLabel.stringValue = message
 	}
 
 	func createServiceFiles(with api: API, featureType: FeatureType, outputDirectory: URL) throws {
@@ -271,8 +268,9 @@ extension ViewController {
 			outputFilePaths += [outputFilePath]
 		}
 
-		print("Created files \(outputFilePaths.joined(separator: ", "))")
-		// TODO: Add to label
+		let message = "Created files \(outputFilePaths.joined(separator: ", "))"
+		print(message)
+		informationLabel.stringValue = message
 	}
 
 	// MARK: Model Generator
@@ -301,7 +299,9 @@ extension ViewController {
 		let modelFile = try FileSystem().createFile(at: outputFilePath)
 		try modelFile.write(string: modelText)
 
-		print("Created file \(modelFile.path)")
+		let message = "Created file \(modelFile.path)"
+		print(message)
+		informationLabel.stringValue = message
 	}
 
 	// MARK: Helper's

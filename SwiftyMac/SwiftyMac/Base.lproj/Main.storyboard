@@ -812,14 +812,6 @@
                                             <action selector="didSelectCreate:" target="XfG-lQ-9wD" id="X0W-CV-Bhg"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pte-JT-hLe">
-                                        <rect key="frame" x="348" y="91" width="37" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="WR8-gT-GiH">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="StH-MH-RgI">
                                         <rect key="frame" x="50" y="340" width="166" height="13"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="What feature do you want to use?" id="Aoa-Qw-Bsc">
@@ -847,13 +839,14 @@
                                             <action selector="inputTypeSelectDidChange:" target="XfG-lQ-9wD" id="2st-Ch-Ium"/>
                                         </connections>
                                     </popUpButton>
-                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="llb-xS-74V">
-                                        <rect key="frame" x="252" y="20" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="FzD-zb-hIa"/>
-                                            <constraint firstAttribute="width" constant="50" id="anV-pf-ptQ"/>
-                                        </constraints>
-                                    </progressIndicator>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pte-JT-hLe">
+                                        <rect key="frame" x="48" y="25" width="458" height="13"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="WR8-gT-GiH">
+                                            <font key="font" metaFont="system" size="10"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="uyC-2W-rmW" firstAttribute="leading" secondItem="rFi-8j-eWR" secondAttribute="leading" id="08T-4K-ySf"/>
@@ -866,23 +859,22 @@
                                     <constraint firstItem="uyC-2W-rmW" firstAttribute="trailing" secondItem="rFi-8j-eWR" secondAttribute="trailing" id="NMP-kB-Rqp"/>
                                     <constraint firstItem="7cF-s7-iSX" firstAttribute="leading" secondItem="Rwg-5P-ATr" secondAttribute="leading" id="PIp-SU-oSt"/>
                                     <constraint firstItem="rFi-8j-eWR" firstAttribute="top" secondItem="uyC-2W-rmW" secondAttribute="bottom" constant="15" id="PJf-E0-5LK"/>
+                                    <constraint firstAttribute="bottom" secondItem="pte-JT-hLe" secondAttribute="bottom" constant="25" id="PRk-pE-GMm"/>
                                     <constraint firstItem="ANJ-LI-gEp" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="leading" id="TxT-K8-thM"/>
                                     <constraint firstItem="Rwg-5P-ATr" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="trailing" constant="50" id="WNS-Gg-Adg"/>
                                     <constraint firstItem="zPV-tP-btG" firstAttribute="leading" secondItem="StH-MH-RgI" secondAttribute="leading" id="YHb-Ku-qjo"/>
-                                    <constraint firstItem="llb-xS-74V" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="YVu-Sq-apm"/>
                                     <constraint firstItem="zPV-tP-btG" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" constant="-125" id="ZJB-kv-P1V"/>
+                                    <constraint firstItem="pte-JT-hLe" firstAttribute="leading" secondItem="7sC-te-cqe" secondAttribute="leading" constant="50" id="a10-6t-1VX"/>
                                     <constraint firstItem="zPV-tP-btG" firstAttribute="top" secondItem="StH-MH-RgI" secondAttribute="bottom" constant="5" id="cEQ-Ze-ee0"/>
-                                    <constraint firstItem="pte-JT-hLe" firstAttribute="leading" secondItem="f0C-ii-NfD" secondAttribute="trailing" constant="8" id="gzu-aE-JnY"/>
                                     <constraint firstItem="98V-oh-udK" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="leading" id="jTb-Ci-Raf"/>
                                     <constraint firstItem="uyC-2W-rmW" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="jiO-UJ-apU"/>
-                                    <constraint firstItem="pte-JT-hLe" firstAttribute="centerY" secondItem="f0C-ii-NfD" secondAttribute="centerY" id="kGN-gY-paf"/>
                                     <constraint firstItem="Rwg-5P-ATr" firstAttribute="top" secondItem="zPV-tP-btG" secondAttribute="top" id="lM3-eB-xeE"/>
                                     <constraint firstItem="ANJ-LI-gEp" firstAttribute="top" secondItem="98V-oh-udK" secondAttribute="bottom" constant="5" id="lR9-mh-LMS"/>
                                     <constraint firstItem="uHz-kO-Qwb" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="m0d-Rd-kTP"/>
                                     <constraint firstItem="f0C-ii-NfD" firstAttribute="top" secondItem="rFi-8j-eWR" secondAttribute="bottom" constant="25" id="mAv-4V-Xmq"/>
                                     <constraint firstItem="alm-r3-EdR" firstAttribute="centerY" secondItem="uHz-kO-Qwb" secondAttribute="centerY" id="nfo-pT-1Jz"/>
                                     <constraint firstItem="alm-r3-EdR" firstAttribute="leading" secondItem="uHz-kO-Qwb" secondAttribute="trailing" constant="8" id="pXS-dE-YMF"/>
-                                    <constraint firstAttribute="bottom" secondItem="llb-xS-74V" secondAttribute="bottom" constant="20" id="r33-2f-TdM"/>
+                                    <constraint firstAttribute="trailing" secondItem="pte-JT-hLe" secondAttribute="trailing" constant="50" id="t5y-KL-lIV"/>
                                     <constraint firstItem="Pbz-3R-DoW" firstAttribute="top" secondItem="7sC-te-cqe" secondAttribute="top" constant="25" id="uIA-NX-ibg"/>
                                     <constraint firstItem="98V-oh-udK" firstAttribute="top" secondItem="zPV-tP-btG" secondAttribute="bottom" constant="5" id="w1Z-FW-mws"/>
                                     <constraint firstItem="uHz-kO-Qwb" firstAttribute="top" secondItem="Pbz-3R-DoW" secondAttribute="bottom" constant="120" id="whM-br-25T"/>
@@ -898,18 +890,17 @@
                     </view>
                     <connections>
                         <outlet property="createButton" destination="f0C-ii-NfD" id="Qqa-r5-BdU"/>
-                        <outlet property="createLabel" destination="pte-JT-hLe" id="4ih-K4-mdw"/>
                         <outlet property="featureSelect" destination="zPV-tP-btG" id="5ZP-NZ-JoR"/>
                         <outlet property="featureSelectTitleLabel" destination="StH-MH-RgI" id="v9K-bV-l5A"/>
                         <outlet property="featureTypeSelect" destination="Rwg-5P-ATr" id="QTR-bU-HCU"/>
                         <outlet property="featureTypeSelectTitleLabel" destination="7cF-s7-iSX" id="49j-SN-Ff9"/>
                         <outlet property="fileNameTextField" destination="uyC-2W-rmW" id="bbq-Rp-MpW"/>
+                        <outlet property="informationLabel" destination="pte-JT-hLe" id="rMe-pC-279"/>
                         <outlet property="inputFileButton" destination="uHz-kO-Qwb" id="4be-b7-Kp4"/>
                         <outlet property="inputFileLabel" destination="alm-r3-EdR" id="idu-4U-mGY"/>
                         <outlet property="inputTypeSelect" destination="ANJ-LI-gEp" id="AZH-7q-gmW"/>
                         <outlet property="inputTypeSelectTitleLabel" destination="98V-oh-udK" id="4r3-aG-7OU"/>
                         <outlet property="modelNameTextField" destination="rFi-8j-eWR" id="gFh-fg-bMx"/>
-                        <outlet property="progressIndicator" destination="llb-xS-74V" id="68A-me-a0p"/>
                         <outlet property="visualEffectView" destination="7sC-te-cqe" id="A1i-K8-TEI"/>
                     </connections>
                 </viewController>

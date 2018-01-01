@@ -7,26 +7,13 @@
 //
 
 import Foundation
-import Requestr
 
-struct Person: JSONDeserializable {
+struct Person: Codable {
 
     let lastName: String
-
     let age: Int
-
     let height: Double
-
     let firstName: String
-
     let isAdult: Bool
-
-    init(json: JSONDictionary) throws {
-        lastName = try json.decode("lastName")
-        age = try json.decode("age")
-        height = try json.decode("height")
-        firstName = try json.decode("firstName")
-        isAdult = try json.decode("isAdult")
-    }
 
 }
