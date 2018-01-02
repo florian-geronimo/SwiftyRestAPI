@@ -1,4 +1,4 @@
-enum InputTypes {
+public enum InputTypes {
   case postman
   case swifty
 }

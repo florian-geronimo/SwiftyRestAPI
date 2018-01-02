@@ -4,6 +4,12 @@ import Swiftline
 
 public final class SwiftyRestAPI {
 
+	enum Error: Swift.Error {
+		case missingFileName
+		case failedToCreateFile
+		case missingFeatureConvert
+	}
+
     private let arguments: [String]
 
     public init(arguments: [String] = CommandLine.arguments) {
@@ -14,12 +20,18 @@ public final class SwiftyRestAPI {
         try runCLIApp()
     }
 
-    // MARK: - CLI App
+}
 
-    func runCLIApp() throws {
-        print("Welcome to SwiftyRestAPI generator!".foreground.Yellow.style.Bold)
-        try chooseGenerator()
-    }
+// MARK: - CLI APP
+
+public extension SwiftyRestAPI {
+
+	func runCLIApp() throws {
+		print("Welcome to SwiftyRestAPI generator!".foreground.Yellow.style.Bold)
+		try chooseGenerator()
+	}
+
+	// MARK: API Generator CLI
 
 	func chooseGenerator() throws {
 		let modelGenerator = "Model Generator".foreground.Red.style.Bold
@@ -34,18 +46,18 @@ public final class SwiftyRestAPI {
 		}
 	}
 
-    func chooseApiGenerator() throws {
+	func chooseApiGenerator() throws {
 		print("\nAPI Generator".foreground.Yellow.style.Bold)
 
-        let requestrApiGenerator = "Requestr API Generator".foreground.Red.style.Bold
-        let alamofireApiGenerator = "Alamofire API Generator".foreground.Red.style.Bold
+		let requestrApiGenerator = "Requestr API Generator".foreground.Red.style.Bold
+		let alamofireApiGenerator = "Alamofire API Generator".foreground.Red.style.Bold
 
-        let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrApiGenerator, alamofireApiGenerator)
+		let generatorChoice = choose("Ok! Which API generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrApiGenerator, alamofireApiGenerator)
 
-        let fileType = chooseInputType()
-        let fileName = ask("What is the input API doc file name?".foreground.Yellow.style.Bold)
+		let fileType = chooseInputType()
+		let fileName = ask("What is the input API doc file name?".foreground.Yellow.style.Bold)
 
-        let api: API
+		let api: API
 
 		switch fileType {
 		case .postman:
@@ -70,30 +82,7 @@ public final class SwiftyRestAPI {
 		}
 
 		print("Finished!".foreground.Green.style.Bold)
-    }
-
-    func chooseModelGenerator() throws {
-		print("Model Generator".foreground.Yellow.style.Bold)
-
-        let requestrModelGenerator = "Requestr Model Generator".foreground.Red.style.Bold
-        let codableModelGenerator = "Codable Model Generator".foreground.Red.style.Bold
-
-        let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrModelGenerator, codableModelGenerator)
-
-        let inputFileName = ask("What is the input JSON file name?".foreground.Yellow.style.Bold)
-        let modelName = ask("What is this model's name?".foreground.Yellow.style.Bold)
-
-		switch generatorChoice {
-		case requestrModelGenerator:
-			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: RequestrModelGenerator.self)
-		case codableModelGenerator:
-			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: CodableModelGenerator.self)
-		default:
-			return
-		}
-
-        print("Done!".foreground.Green)
-    }
+	}
 
 	func chooseInputType() -> InputTypes {
 		print("\nInput Types".foreground.Yellow.style.Bold)
@@ -112,27 +101,38 @@ public final class SwiftyRestAPI {
 		}
 	}
 
-    // MARK: - Helper's
+	// MARK: Model Generator CLI
 
-	func fileNameToAPI(inputFileName: String) throws -> API {
-		let data = try File(path: inputFileName).read()
-		let decoder = JSONDecoder()
-		let api = try decoder.decode(API.self, from: data)
-		return api
+	func chooseModelGenerator() throws {
+		print("Model Generator".foreground.Yellow.style.Bold)
+
+		let requestrModelGenerator = "Requestr Model Generator".foreground.Red.style.Bold
+		let codableModelGenerator = "Codable Model Generator".foreground.Red.style.Bold
+
+		let generatorChoice = choose("Ok! Which model generator do you want to use?\n".foreground.Yellow.style.Bold, choices: requestrModelGenerator, codableModelGenerator)
+
+		let inputFileName = ask("What is the input JSON file name?".foreground.Yellow.style.Bold)
+		let modelName = ask("What is this model's name?".foreground.Yellow.style.Bold)
+
+		switch generatorChoice {
+		case requestrModelGenerator:
+			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: RequestrModelGenerator.self)
+		case codableModelGenerator:
+			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: CodableModelGenerator.self)
+		default:
+			return
+		}
+
+		print("Done!".foreground.Green)
 	}
 
-	func createModelFile<T: ModelGenerator>(inputFileName: String, modelName: String, generatorType: T.Type) throws {
-		print("Using Model Generator ...".foreground.Green.style.Bold)
+}
 
-		let outputFileName = "\(modelName).swift"
-		let inputData = try File(path: inputFileName).read()
-		let modelGenerator: ModelGenerator = try T(modelName: modelName, jsonData: inputData)
-		let modelText = modelGenerator.makeModelFile()
-		let modelFile = try FileSystem().createFile(at: outputFileName)
-		try modelFile.write(string: modelText)
+// MARK: - File Generation
 
-		print("Created file \(outputFileName)".foreground.Green.style.Bold)
-	}
+public extension SwiftyRestAPI {
+
+	// MARK: API Generation
 
 	func createEndpointsFile(api: API) throws {
 		let outputFileName = "Endpoints.swift"
@@ -167,14 +167,32 @@ public final class SwiftyRestAPI {
 		print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
 	}
 
+	// MARK: Model Generation
+
+	func createModelFile<T: ModelGenerator>(inputFileName: String, modelName: String, generatorType: T.Type) throws {
+		print("Using Model Generator ...".foreground.Green.style.Bold)
+
+		let outputFileName = "\(modelName).swift"
+		let inputData = try File(path: inputFileName).read()
+		let modelGenerator: ModelGenerator = try T(modelName: modelName, jsonData: inputData)
+		let modelText = modelGenerator.makeModelFile()
+		let modelFile = try FileSystem().createFile(at: outputFileName)
+		try modelFile.write(string: modelText)
+
+		print("Created file \(outputFileName)".foreground.Green.style.Bold)
+	}
+
 }
+
+// MARK: - Helper's
 
 public extension SwiftyRestAPI {
 
-    enum Error: Swift.Error {
-		case missingFileName
-        case failedToCreateFile
-        case missingFeatureConvert
-    }
+	func fileNameToAPI(inputFileName: String) throws -> API {
+		let data = try File(path: inputFileName).read()
+		let decoder = JSONDecoder()
+		let api = try decoder.decode(API.self, from: data)
+		return api
+	}
 
 }

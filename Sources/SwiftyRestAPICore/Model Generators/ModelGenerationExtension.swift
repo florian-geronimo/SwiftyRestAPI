@@ -9,7 +9,7 @@ import Foundation
 
 public extension ModelGenerator {
     
-    func findType(value:Any) -> Type {
+    func findType(value: Any) -> Type {
         let type: Type
         
         switch value {
