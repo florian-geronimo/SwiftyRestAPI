@@ -19,7 +19,6 @@ public class PostmanConvertr {
 
      let url = request["url"] as! String
      return String.getBasePath(url:url)
-
   }
 
   private func getCategories(json: JSONDictionary) -> [API.Category] {
@@ -60,6 +59,7 @@ public class PostmanConvertr {
 }
 
 extension String {
+	
     func capitalizeFirst() -> String {
         var result = self
         let substr1 = String(self[startIndex]).uppercased()

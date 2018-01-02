@@ -84,7 +84,7 @@ public extension SwiftyRestAPI {
 		print("Finished!".foreground.Green.style.Bold)
 	}
 
-	func chooseInputType() -> InputTypes {
+	func chooseInputType() -> InputType {
 		print("\nInput Types".foreground.Yellow.style.Bold)
 
 		let postmanChoice = "Postman API json file".foreground.Red.style.Bold

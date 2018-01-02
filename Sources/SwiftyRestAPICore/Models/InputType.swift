@@ -1,4 +1,11 @@
-public enum InputTypes {
-  case postman
-  case swifty
+//
+//  InputType.swift
+//  SwiftyRestAPIPackageDescription
+//
+
+public enum InputType {
+
+	case postman
+	case swifty
+
 }

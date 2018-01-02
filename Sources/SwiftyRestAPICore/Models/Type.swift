@@ -1,3 +1,8 @@
+//
+//  Type.swift
+//  SwiftyRestAPIPackageDescription
+//
+
 import Foundation
 
 public indirect enum Type {
