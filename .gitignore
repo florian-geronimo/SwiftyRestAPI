@@ -2,16 +2,3 @@
 /.build
 /Packages
 /*.xcodeproj
-ApiInputExample.json
-EndpointExample.swift
-
-Endpoints.swift
-Service0.swift
-Service1.swift
-Service2.swift
-Service3.swift
-Service4.swift
-
-ServiceExample.swift
-TestPerson.json
-TestPerson.swift
