@@ -65,7 +65,6 @@ class ViewController: NSViewController {
 	
     @IBOutlet weak var inputFileButton: NSButton!
     @IBOutlet weak var inputFileLabel: NSTextField!
-    @IBOutlet weak var fileNameTextField: NSTextField!
     @IBOutlet weak var modelNameTextField: NSTextField!
     @IBOutlet weak var createButton: NSButton!
 	@IBOutlet weak var informationLabel: NSTextField!

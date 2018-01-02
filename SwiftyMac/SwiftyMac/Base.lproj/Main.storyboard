@@ -780,19 +780,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uyC-2W-rmW">
+                                    <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rFi-8j-eWR">
                                         <rect key="frame" x="177" y="172" width="200" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="VXb-8e-gQG"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File Name" drawsBackground="YES" id="tUr-vw-evM">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFi-8j-eWR">
-                                        <rect key="frame" x="177" y="135" width="200" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Model Name" drawsBackground="YES" id="VY2-qX-Trk">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -800,7 +789,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f0C-ii-NfD">
-                                        <rect key="frame" x="206" y="82" width="142" height="32"/>
+                                        <rect key="frame" x="206" y="119" width="142" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="ywu-6Q-gbT"/>
                                         </constraints>
@@ -849,16 +838,13 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="uyC-2W-rmW" firstAttribute="leading" secondItem="rFi-8j-eWR" secondAttribute="leading" id="08T-4K-ySf"/>
                                     <constraint firstItem="Rwg-5P-ATr" firstAttribute="top" secondItem="7cF-s7-iSX" secondAttribute="bottom" constant="5" id="5OK-wt-PmU"/>
                                     <constraint firstItem="f0C-ii-NfD" firstAttribute="leading" secondItem="uHz-kO-Qwb" secondAttribute="leading" id="84B-iz-Gtt"/>
                                     <constraint firstItem="ANJ-LI-gEp" firstAttribute="trailing" secondItem="zPV-tP-btG" secondAttribute="trailing" id="Ckp-EG-D0V"/>
                                     <constraint firstItem="zPV-tP-btG" firstAttribute="top" secondItem="Pbz-3R-DoW" secondAttribute="bottom" constant="25" id="D2i-ul-nNV"/>
-                                    <constraint firstItem="uyC-2W-rmW" firstAttribute="top" secondItem="uHz-kO-Qwb" secondAttribute="bottom" constant="25" id="I6P-rg-yCL"/>
+                                    <constraint firstItem="rFi-8j-eWR" firstAttribute="top" secondItem="uHz-kO-Qwb" secondAttribute="bottom" constant="25" id="KSz-4s-fih"/>
                                     <constraint firstItem="Pbz-3R-DoW" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="MEn-Ob-XHY"/>
-                                    <constraint firstItem="uyC-2W-rmW" firstAttribute="trailing" secondItem="rFi-8j-eWR" secondAttribute="trailing" id="NMP-kB-Rqp"/>
                                     <constraint firstItem="7cF-s7-iSX" firstAttribute="leading" secondItem="Rwg-5P-ATr" secondAttribute="leading" id="PIp-SU-oSt"/>
-                                    <constraint firstItem="rFi-8j-eWR" firstAttribute="top" secondItem="uyC-2W-rmW" secondAttribute="bottom" constant="15" id="PJf-E0-5LK"/>
                                     <constraint firstAttribute="bottom" secondItem="pte-JT-hLe" secondAttribute="bottom" constant="25" id="PRk-pE-GMm"/>
                                     <constraint firstItem="ANJ-LI-gEp" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="leading" id="TxT-K8-thM"/>
                                     <constraint firstItem="Rwg-5P-ATr" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="trailing" constant="50" id="WNS-Gg-Adg"/>
@@ -867,7 +853,6 @@
                                     <constraint firstItem="pte-JT-hLe" firstAttribute="leading" secondItem="7sC-te-cqe" secondAttribute="leading" constant="50" id="a10-6t-1VX"/>
                                     <constraint firstItem="zPV-tP-btG" firstAttribute="top" secondItem="StH-MH-RgI" secondAttribute="bottom" constant="5" id="cEQ-Ze-ee0"/>
                                     <constraint firstItem="98V-oh-udK" firstAttribute="leading" secondItem="zPV-tP-btG" secondAttribute="leading" id="jTb-Ci-Raf"/>
-                                    <constraint firstItem="uyC-2W-rmW" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="jiO-UJ-apU"/>
                                     <constraint firstItem="Rwg-5P-ATr" firstAttribute="top" secondItem="zPV-tP-btG" secondAttribute="top" id="lM3-eB-xeE"/>
                                     <constraint firstItem="ANJ-LI-gEp" firstAttribute="top" secondItem="98V-oh-udK" secondAttribute="bottom" constant="5" id="lR9-mh-LMS"/>
                                     <constraint firstItem="uHz-kO-Qwb" firstAttribute="centerX" secondItem="7sC-te-cqe" secondAttribute="centerX" id="m0d-Rd-kTP"/>
@@ -894,7 +879,6 @@
                         <outlet property="featureSelectTitleLabel" destination="StH-MH-RgI" id="v9K-bV-l5A"/>
                         <outlet property="featureTypeSelect" destination="Rwg-5P-ATr" id="QTR-bU-HCU"/>
                         <outlet property="featureTypeSelectTitleLabel" destination="7cF-s7-iSX" id="49j-SN-Ff9"/>
-                        <outlet property="fileNameTextField" destination="uyC-2W-rmW" id="bbq-Rp-MpW"/>
                         <outlet property="informationLabel" destination="pte-JT-hLe" id="rMe-pC-279"/>
                         <outlet property="inputFileButton" destination="uHz-kO-Qwb" id="4be-b7-Kp4"/>
                         <outlet property="inputFileLabel" destination="alm-r3-EdR" id="idu-4U-mGY"/>
