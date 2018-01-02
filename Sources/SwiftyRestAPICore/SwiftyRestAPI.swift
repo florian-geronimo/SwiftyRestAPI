@@ -60,7 +60,7 @@ public final class SwiftyRestAPI {
 		case requestrApiGenerator:
 			print("Using Requestr Generator ...".foreground.Green.style.Bold)
 			try createEndpointsFile(api: api)
-			try createServiceFiles(api: api)
+			try createRequestrServiceFiles(api: api)
 		case alamofireApiGenerator:
 			print("Using Alamofire Generator ...".foreground.Green.style.Bold)
 			try createEndpointsFile(api: api)
@@ -88,7 +88,8 @@ public final class SwiftyRestAPI {
 			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: RequestrModelGenerator.self)
 		case codableModelGenerator:
 			try createModelFile(inputFileName: inputFileName, modelName: modelName, generatorType: CodableModelGenerator.self)
-		default: return
+		default:
+			return
 		}
 
         print("Done!".foreground.Green)
@@ -143,23 +144,16 @@ public final class SwiftyRestAPI {
 		print("Created file \(outputFileName)".foreground.Green)
 	}
 
-	func createServiceFiles(api: API) throws {
-		let apiGenerator = RequestrAPIGenerator(api: api)
-		let serviceTexts = apiGenerator.makeServiceFiles()
-
-		var outputFileNames: [String] = []
-		for (idx, serviceText) in serviceTexts.enumerated() {
-			let outputFileName = "Service\(idx).swift"
-			let serviceFile = try FileSystem().createFile(at: outputFileName)
-			try serviceFile.write(string: serviceText)
-			outputFileNames += [outputFileName]
-		}
-
-		print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
+	func createRequestrServiceFiles(api: API) throws {
+		try _createServiceFiles(api: api, generatorType: RequestrAPIGenerator.self)
 	}
 
 	func createAlamofireServiceFiles(api: API) throws {
-		let apiGenerator = AlamofireAPIGenerator(api: api)
+		try _createServiceFiles(api: api, generatorType: AlamofireAPIGenerator.self)
+	}
+
+	func _createServiceFiles<T: APIGenerator>(api: API, generatorType: T.Type) throws {
+		let apiGenerator = T(api: api)
 		let serviceTexts = apiGenerator.makeServiceFiles()
 
 		var outputFileNames: [String] = []
@@ -172,6 +166,7 @@ public final class SwiftyRestAPI {
 
 		print("Created files \(outputFileNames.joined(separator: ", "))".foreground.Green)
 	}
+
 }
 
 public extension SwiftyRestAPI {
