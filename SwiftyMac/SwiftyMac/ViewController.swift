@@ -15,8 +15,8 @@ class ViewController: NSViewController {
 	// MARK: - Properties
 
     lazy var features: [String : Feature] = {
-        return ["Model Generator" : .modelGenerator,
-                "API Generator" : .apiGenerator]
+        return ["Model Generator": .modelGenerator,
+                "API Generator": .apiGenerator]
     }()
 
 	// MARK: Feature Selection
@@ -62,7 +62,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var featureTypeSelect: NSPopUpButton!
 	@IBOutlet weak var inputTypeSelectTitleLabel: NSTextField!
 	@IBOutlet weak var inputTypeSelect: NSPopUpButton!
-	
+
     @IBOutlet weak var inputFileButton: NSButton!
     @IBOutlet weak var inputFileLabel: NSTextField!
     @IBOutlet weak var modelNameTextField: NSTextField!

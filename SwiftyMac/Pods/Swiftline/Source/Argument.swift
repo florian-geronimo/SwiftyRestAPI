@@ -89,7 +89,7 @@ extension String {
       distanceFromEndIndex = 0
     }
     
-    let actualRange = (characters.index(startIndex, offsetBy: range.lowerBound) ..< characters.index(endIndex, offsetBy: -distanceFromEndIndex))
+    let actualRange = (index(startIndex, offsetBy: range.lowerBound) ..< index(endIndex, offsetBy: -distanceFromEndIndex))
 
     let substring = self[actualRange]
     return String(substring)
