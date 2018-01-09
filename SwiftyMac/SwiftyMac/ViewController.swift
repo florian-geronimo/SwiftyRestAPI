@@ -166,7 +166,7 @@ extension ViewController {
 		print("FEATURE: \(selectedFeature)")
 		print("FEATURE TYPE: \(selectedFeatureType)")
 		print("INPUT TYPE: \(selectedInputType)")
-		print("INPUT FILE: \(selectedInputFile)")
+		print("INPUT FILE: \(selectedInputFile!)")
 		runFeature(selectedFeature)
     }
 
