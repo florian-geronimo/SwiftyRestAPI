@@ -1,8 +1,9 @@
 
 target 'SwiftyMac' do
   use_frameworks!
+  inhibit_all_warnings!
 
-  pod 'SwiftyRestAPI',:inhibit_warnings => true ,:path => '../'
+  pod 'SwiftyRestAPI',:path => '../'
 
   post_install do |installer|
       installer.pods_project.targets.each do |target|

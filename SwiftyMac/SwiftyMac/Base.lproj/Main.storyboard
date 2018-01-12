@@ -769,8 +769,8 @@
                                             <action selector="didSelectChooseInputFile:" target="XfG-lQ-9wD" id="uwz-Am-yE1"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="alm-r3-EdR">
-                                        <rect key="frame" x="349" y="216" width="99" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="alm-r3-EdR">
+                                        <rect key="frame" x="349" y="216" width="188" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Input File Name" id="xuX-KA-pUk">
                                             <font key="font" metaFont="system"/>
