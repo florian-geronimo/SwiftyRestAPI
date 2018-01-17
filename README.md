@@ -71,6 +71,7 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
   - [x] Arrays
   - [ ] Nested dictionaries
   - [ ] Optionals
+- Logo
 
 ### Examples
 
@@ -308,7 +309,7 @@ SwiftyRestAPI is a in development project which generates swift files, SwiftyRes
 #### Models examples:
 
 <details>
-  <summary> Model input example </summary>
+  <summary> Model input example: </summary>
   <figure>
     <pre>
       {
